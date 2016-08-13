@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include ../partials/head %>
   </head>
   <body>
-
+    <% include ../partials/nav %>
+    <div class='container'>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
 
     	<h2>Welcome! Please log in.</h2>
-    	<a href="/auth/linkedin">Login with Linkedin</a>
+    	<a href='/auth/linkedin' class='link'>Login with Linkedin</a>
 
+    </div> <!--container div -->
+      <% include ../partials/footer %>
+    <% include ../partials/scripts %>
   </body>
 </html>

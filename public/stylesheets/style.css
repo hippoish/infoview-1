@@ -1,8 +1,20 @@
 body {
-  padding: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-top: 70px; /* fix nav overlap */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.link {
+  color: #2d71b4;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: #878787;
+}
+
+body {
+  padding-top: 70px;
 }
