@@ -10,6 +10,8 @@ router.get('/', function(req, res){
 //LINKEDIN OAUTH
 router.get('/auth/linkedin', passport.authenticate(
  'linkedin'
+ // ,
+ // { scope: ['profile', 'email'] }
 ));
 
 
