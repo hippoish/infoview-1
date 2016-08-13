@@ -4,12 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var session = require('express-session');
 // Load env variables from .env file
 require('dotenv').config()
 
 var routes = require('./config/routes');
 var mongoose = require('./config/database');
+var passport = require('./config/passport');
 
 var app = express();
 
@@ -24,10 +25,37 @@ app.locals.title = "Infoview"
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//cookie parser
+app.use(cookieParser());
+// new code below
+app.use(session({
+  secret: 'is-that-my-boat?',
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
+
+//LINKEDIN//
+app.get('/auth/linkedin',
+  passport.authenticate('linkedin'),
+  function(req, res){
+    // The request will be redirected to LinkedIn for authentication, so this
+    // function will not be called.
+  });
+
+app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+
+/////////// ERROR HANDLERS /////////////
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -36,7 +64,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+
 
 // development error handler
 // will print stacktrace
