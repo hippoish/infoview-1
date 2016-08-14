@@ -9,7 +9,7 @@ var $todoBootsyLevel;
 function createPostHTML(post) {
   return $('<li id="post-' + post.id +
   '" class="interviewed-' + post.interviewed
-  + '"><strong>' + post.company
+  + ' list-group-item"><strong>' + post.company
   + ' </strong>- ' + post.content + '</li>'
   );
 }
