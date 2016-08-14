@@ -1,3 +1,4 @@
+console.log('app.js loaded');
 var $personalTodo;
 var $bootsyTodo;
 var $form;
@@ -6,13 +7,11 @@ var $todoBootsyLevel;
 
 // make the fcn to dynamically create an html representation of the json returned from the json
 function createPostHTML(post) {
-  return $('<li id="post-' + post.id '" class="interviewed-'
-  + post.interviewed
-  + '"><strong>'
-  + post.company
-  + ' </strong>- '
-  + post.content
-  + '</li>');
+  return $('<li id="post-' + post.id +
+  '" class="interviewed-' + post.interviewed
+  + '"><strong>' + post.company
+  + ' </strong>- ' + post.content + '</li>'
+  );
 }
 
 $(document).ready(function() {
@@ -27,24 +26,24 @@ $(document).ready(function() {
   $.ajax({
     method: 'GET',
     url: '/api/posts',
-    success: function(jsonPosts){
-      listPosts(jsonPosts);
-    },
-    error:function(){
-      $postsList.html('error');
-    }
-  });
-
+    // success: function(data){
+    //   listPosts(data);
+    // },
+    // error:function(){
+    //   $postsList.html('error');
+    // }
+  }).then(
   // pass it what the ajax req came back with
-  function listPosts(jsonPosts) {
-    // iterate through our array of posts
-    jsonPosts.forEach(function(jsonPost) {
-      // convert to html
-      var postHTML = createPostHTML(jsonPost);
-      // check if post is a completed interview and make it the correct color
+    function listPosts(jsonPosts) {
+      // iterate through our array of posts
+      jsonPosts.forEach(function(jsonPost) {
+        // convert to html
+        var postHTML = createPostHTML(jsonPost);
 
-      $postsList.append(postHTML);
+        // check if post is a completed interview and make it the correct color
+        $postsList.append(postHTML);
 
-    })
-  }
+      })
+    }
+  )
 })
