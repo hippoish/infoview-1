@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var env = require('dotenv')
 
 // Use different database URIs based on whether an env var exists.
 var dbUri = process.env.MONGOLAB_URI ||
