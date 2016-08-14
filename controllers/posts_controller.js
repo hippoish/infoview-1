@@ -11,7 +11,7 @@ module.exports = {
 // return all posts from the db as json
 // middleware takes in a req and a res and needs a next to tell the app when to pass along to the next middleware in the chain
 function index(req, res, next) {
-  console.log("Bootsy's on a roll, bebe!!");
+  console.log('Fetchin those posts, baby!!!');
 
   Post.find({}, function(err, posts) {
     // express automatically has some error handling
@@ -23,7 +23,7 @@ function index(req, res, next) {
 };
 
 function create(req, res, next) {
-  console.log('Brand new Bootsy post, Bobble', req.body);
+  console.log('Brand new post, Bobble', req.body);
 
   var newPost =   new Post();
   newPost.company = req.body.company;
