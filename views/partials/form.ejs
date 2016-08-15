@@ -11,8 +11,8 @@
      <form class="new-post" id="new-post">
        <div class="form-group">
          <label for="exampleInputEmail1">Company Name</label>
-         <input type="email" class="form-control " id="post-company" aria-describedby="emailHelp" placeholder="Enter company name">
-         <small id="emailHelp" class="form-text text-muted">This is what company your post is in reference to. </small>
+         <input class="form-control " id="post-company" aria-describedby="emailHelp" placeholder="Enter company name">
+         <small class="form-text text-muted">This is what company your post is in reference to. </small>
        </div>
 
        <fieldset class="form-group">
@@ -33,7 +33,7 @@
 
        <div class="form-group">
          <label for="exampleTextarea">Interview details:</label>
-         <textarea class="form-control" id="exampleTextarea" rows="5" placeHolder="Share you recent experience, or talk about an upcoming interview you will be having."></textarea>
+         <textarea class="form-control" id="post-content" rows="5" placeHolder="Share you recent experience, or talk about an upcoming interview you will be having."></textarea>
        </div>
        <div class="form-group">
 
@@ -41,22 +41,22 @@
          <label>If you have previously interviewed at a company, how was your overall experience?</label>
          <div class="radio">
            <label>
-             <input type="radio" name="optionsRadios2" id="optionsRadios3" value="option1" checked>
+             <input type="radio" name="optionsRadios2" id="optionsRadios3" value="true" checked>
              Positive
            </label>
          </div>
          <div class="radio">
            <label>
-             <input type="radio" name="optionsRadios2" id="optionsRadios4" value="option2">
+             <input type="radio" name="optionsRadios2" id="optionsRadios4" value="false">
              Negative
            </label>
          </div>
-         <div class="radio disabled">
+         <%# <div class="radio disabled">
            <label>
-             <input type="radio" name="optionsRadios2" id="optionsRadios5" value="option3" disabled>
+             <input type="radio" name="optionsRadios2" id="optionsRadios5" value="" >
              Neutral
            </label>
-         </div>
+         </div>%>
        </fieldset>
 
 
