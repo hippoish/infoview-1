@@ -19,7 +19,7 @@ $(document).ready(function() {
   $postsList       = $('#posts-list');
   $form            = $('#new-post');
   $postCompany     = $('#post-company');
-  $interviewed     = $('input[name=optionsRadio1]');
+  $interviewed     = $('input[name=optionsRadio1]:checked');
 
   //get all posts json using ajax
   $.ajax({
