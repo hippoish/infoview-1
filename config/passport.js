@@ -17,11 +17,15 @@ passport.use(new LinkedInStrategy({
 // linkedin will send back token and profile, we will give a cb fcn
 function(accessToken, refreshToken, profile, cb) {
   // asynchronous verification
-  console.log(profile)
-  console.log(profile.id);
-  console.log(profile.emails[0]);
-  console.log(profile.displayName);
-  // console.log(r_basicprofile)
+  // console.log('this is your json: ', profile._json);
+  console.log('profile id: ', profile.id);
+  console.log('email: ', profile.emails[0].value);
+  console.log('firstName: ', profile._json.firstName);
+  console.log('lastName: ', profile._json.lastName);
+  console.log('location: ', profile._json.location.name);
+  console.log('industry: ', profile._json.industry);
+  console.log('picture: ', profile._json.pictureUrl);
+  // // console.log(r_basicprofile)
   // console.log(profile.lastName);
 
   // asynchronous verification
@@ -42,15 +46,16 @@ function(accessToken, refreshToken, profile, cb) {
         // if no user is found with that linkedin id, create them by setting fields from the returned profile attributes
         var newUser = new User({
           linkedin : {
-            token      : profile.token,
-            id         : profile.id,
-            email      : profile.emails[0].value,
-            firstName  : profile.displayName,
-            lastName   : profile.lastName,
-            industry   : profile.industry,
-            headline   : profile.headline,
-            profileUrl : profile.profileUrl,
-            pictureUrl : profile.pictureUrl
+            // token       : profile.token,
+            id          : profile.id,
+            email       : profile.emails[0].value,
+            firstName   : profile._json.firstName,
+            lastName    : profile._json.lastName,
+            // location    : profile._json.location.name,
+            industry    : profile._json.industry,
+            headline    : profile._json.headline,
+            profileUrl  : profile._json.profileUrl,
+            pictureUrl  : profile._json.pictureUrl
           }
         });
 

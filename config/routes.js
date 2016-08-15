@@ -26,21 +26,13 @@ router.route('/api/posts')
 ////////////////////////////////////////////
 router.get('/', function(req, res, next){
   console.log('get request');
-  res.render('pages/dashboard', {user: req.user});
+  res.render('/', {user: req.user});
 });
 
 router.get('/auth/linkedin', passport.authenticate(
- ('linkedin')
- //, { scope: ['profile', 'email'] }
+ ('linkedin')/*,*/
+ // { scope: ['profile', 'email'] }
 ));
-
-// router.get('/oauth2callback', passport.authenticate(
-//   'linkedin',
-//   {
-//     successRedirect: '/dashboard',
-//     failureRedirect: '/'
-//   }
-// ));
 
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect : '/dashboard',
@@ -50,7 +42,6 @@ router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
-
 });
 
 module.exports = router;

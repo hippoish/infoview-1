@@ -47,22 +47,6 @@ app.use(function (req, res, next) {
 
 app.use('/', routes);
 
-////////////////////////////////////////////
-///////////// LINKEDIN OAUTH ///////////////
-////////////////////////////////////////////
-// app.get('/auth/linkedin',
-//   passport.authenticate('linkedin'),
-//   function(req, res){
-//     // The request will be redirected to LinkedIn for authentication, so this
-//     // function will not be called.
-//   }
-// );
-//
-// app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-//   successRedirect : '/dashboard',
-//   failureRedirect : '/login'
-// }));
-
 /////////// ERROR HANDLERS /////////////
 
 // catch 404 and forward to error handler
