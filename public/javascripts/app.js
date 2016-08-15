@@ -78,9 +78,9 @@ $(document).ready(function() {
   $postsList       = $('#posts-list');
   $form            = $('#new-post');
   $postCompany     = $('#post-company');
+  $postBonusTips   = $('#post-bonusTips');
   $interviewed     = $('input[name=optionsRadios1]:checked');
   $posExp          = $('input[name=optionsRadios2]:checked');
-  // $bonusTips       = $('');
   $postContent     = $('#post-content');
 
 
@@ -131,6 +131,7 @@ $(document).ready(function() {
         $postContent.val('');
         $interviewed.val('');
         $posExp.val('');
+        $postBonusTips.val('');
         // return new post as json
         return jsonPost;
       },
