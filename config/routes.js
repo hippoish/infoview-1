@@ -50,6 +50,7 @@ router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
+
 });
 
 module.exports = router;
