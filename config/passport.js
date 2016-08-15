@@ -2,18 +2,6 @@ var passport         = require('passport');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 var User             = require('../models/User');
 
-// serialize user
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-// deserialize user
-passport.deserializeUser(function(id, callback) {
-  User.findById(id, function(err, user) {
-      callback(err, user);
-  });
-});
-
 //////////////////////////////
 /// LinkedIn Authorization ///
 //////////////////////////////
@@ -77,6 +65,18 @@ function(accessToken, refreshToken, profile, cb) {
   });
 
 }));
+
+// serialize user
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+// deserialize user
+passport.deserializeUser(function(id, callback) {
+  User.findById(id, function(err, user) {
+    callback(err, user);
+  });
+});
 
 // export the linked in strategy and passport
 module.exports = LinkedInStrategy;
