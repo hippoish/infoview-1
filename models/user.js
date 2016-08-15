@@ -1,25 +1,20 @@
 var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
-//   // local : {
-//   //   email        : String,
-//   //   password     : String,
-//   // },
-//   // linkedin         : {
-//   //   profile      : String,
-//   //   id           : String,
-//   //   token        : String,
-//   //   email        : String,
-//   //   name         : String
-//   // }
-//
-  name: String,
-  email: String,
-  industry: String,
-  id: Number,
+  linkedin: {
+    // token      : String,
+    id         : String,
+    email      : String,
+    firstName  : String,
+    lastName   : String,
+    industry   : Number,
+    headline   : String,
+    profileUrl : String,
+    pictureUrl : String,
+  },
   past_interview_companies: String
 });
-//
+
 // UserSchema.methods.splitCompanies = funtion() {
 //   return this.past_interview_companies.split(',')
 // }

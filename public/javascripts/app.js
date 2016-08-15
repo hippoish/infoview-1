@@ -1,9 +1,8 @@
 console.log('app.js loaded');
-var $personalTodo;
-var $bootsyTodo;
+var $postsList;
 var $form;
-var $todoTask;
-var $todoBootsyLevel;
+var $postCompany;
+var $interviewed;
 
 // make the fcn to dynamically create an html representation of the json returned from the json
 function createPostHTML(post) {
@@ -18,9 +17,9 @@ $(document).ready(function() {
   // grab all needed DOM elements
   // column that we are showing all the posts in
   $postsList       = $('#posts-list');
-  // $form            = $('#new-post');
-  // $postCompany        = $('.post-list-item');
-  // $todoBootsyLevel = $('#todo-bootsy-level');
+  $form            = $('#new-post');
+  $postCompany     = $('#post-company');
+  $interviewed     = $('input[name=optionsRadio1]');
 
   //get all posts json using ajax
   $.ajax({

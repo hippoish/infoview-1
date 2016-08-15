@@ -30,7 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //cookie parser
 app.use(cookieParser());
-// new code below
 app.use(session({
   secret: 'is-that-my-boat?',
   resave: false,
@@ -41,6 +40,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', routes);
+
+// This middleware will allow us to use the current user in the layout
+app.use(function (req, res, next) {
+  global.user = req.user;
+  next()
+});
 
 //LINKEDIN//
 app.get('/auth/linkedin',
