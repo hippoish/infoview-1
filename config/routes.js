@@ -21,6 +21,10 @@ router.route('/api/posts')
   .get(postsController.index)
   .post(postsController.create);
 
+// API for deleting posts
+router.route('/api/posts/:id')
+  .delete(postsController.destroy);
+
 //LINKEDIN OAUTH
 router.get('/auth/linkedin', passport.authenticate(
  'linkedin', { scope: ['profile', 'email'] }

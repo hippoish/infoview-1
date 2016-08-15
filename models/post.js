@@ -7,7 +7,7 @@ var postSchema = mongoose.Schema({
   positive_exp     : Boolean,
   bonus_tips       : String,
   replies          : Array,
-  id               : Number
+  // id               : Number
 });
 
 var Post = mongoose.model('Post', postSchema);

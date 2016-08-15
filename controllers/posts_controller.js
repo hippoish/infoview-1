@@ -2,10 +2,9 @@ var Post = require('../models/Post');
 
 module.exports = {
   index:   index,
-  create:  create
-  // ,
+  create:  create,
   // update:  update,
-  // destroy: destroy
+  destroy: destroy
 }
 
 // return all posts from the db as json
