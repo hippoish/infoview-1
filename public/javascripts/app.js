@@ -1,4 +1,5 @@
 console.log('app.js loaded');
+// globally define jquery variables to be used later
 var $postsList;
 var $form;
 var $postCompany;
@@ -7,7 +8,7 @@ var $posExp;
 var $bonusTips;
 var $postContent;
 
-// make the fcn to dynamically create an html representation of the json returned from the json
+// fcn to dynamically create an html representation of the json returned from the json
 function createPostHTML(post) {
   return $('<li id="post-' + post.id +
   '" class="interviewed-' + post.interviewed
@@ -16,6 +17,7 @@ function createPostHTML(post) {
   );
 }
 
+// wait for the doucment to load before performing the following
 $(document).ready(function() {
   // grab all needed DOM elements
   // column that we are showing all the posts in
@@ -30,15 +32,9 @@ $(document).ready(function() {
   //get all posts json using ajax
   $.ajax({
     method: 'GET',
-    url: '/api/posts',
-    // success: function(data){
-    //   listPosts(data);
-    // },
-    // error:function(){
-    //   $postsList.html('error');
-    // }
+    url: '/api/posts'
   }).then(
-  // pass it what the ajax req came back with
+    // pass it what the ajax req came back with
     function listPosts(jsonPosts) {
       // iterate through our array of posts
       jsonPosts.forEach(function(jsonPost) {
@@ -56,6 +52,7 @@ $(document).ready(function() {
     // stop the default behavior from clicking on the submit buttton
     e.preventDefault();
 
+    // create the new post from the values of the form fields
     var newPost = {
       company      : $postCompany.val(),
       content      : $postContent.val(),
@@ -67,30 +64,30 @@ $(document).ready(function() {
     console.log(newPost)
     // use ajax to add the new todo to our db:
 
-    // AJAX POST /api/posts => returns new todo as json
-    // create an html representation of the todo
-    // display/'append' it to the DOM
-
     $.ajax({
       method: 'POST',
       url:    '/api/posts',
       data:   newPost
-    }).then(
+    }).then( // can pass 2 cb's in case of success or failure
+      // what to do if ajax request was succesful
       function(jsonPost) {
-        // console.log('Success: ', jsonPost);
-
         // clear the form if successfully saved
         $postCompany.val('');
         $postContent.val('');
-
+        $interviewed.val('');
+        $posExp.val('');
+        // return new post as json
         return jsonPost;
       },
-      function(err) { // you can pass two callbacks to .then; first will be what to happen if ajax request was succcessful, second is what to do if the request failed
-        // console.log('Failed: ', err);
+      // what to do if the request failed
+      function(err) {
+        console.log('Failed: ', err);
       }
     ).then(
       function(jsonPost) {
+        // use previously defined fcn to create an html representation of the post
         var postHTML = createPostHTML(jsonPost);
+        // append the html post to the DOM
         $postsList.append(postHTML);
       }
     )

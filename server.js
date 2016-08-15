@@ -41,24 +41,26 @@ app.use(passport.session());
 
 app.use('/', routes);
 
-// This middleware will allow us to use the current user in the layout
-app.use(function (req, res, next) {
-  global.user = req.user;
-  next()
-});
-
-//LINKEDIN//
+//////////////////////////
+/////// LINKEDIN /////////
 app.get('/auth/linkedin',
   passport.authenticate('linkedin'),
   function(req, res){
     // The request will be redirected to LinkedIn for authentication, so this
     // function will not be called.
-  });
+  }
+);
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/',
-  failureRedirect: '/login'
+  successRedirect : '/dashboard',
+  failureRedirect : '/login'
 }));
+
+// This middleware will allow us to use the current user in the layout
+app.use(function (req, res, next) {
+  global.user = req.user;
+  next()
+});
 
 /////////// ERROR HANDLERS /////////////
 
@@ -68,8 +70,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-
 
 // development error handler
 // will print stacktrace
@@ -92,6 +92,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
