@@ -1,14 +1,67 @@
-<%# <h2 class="custom-font">Todos for Yous!</h2>
-<form class="new-post" id="new-post">
-  <input class="input-content" type="text" name='todo[name]' id="todo-task" placeholder="Tell us about your interview">
-  <select name="todo[bootsyLevel]" id="todo-bootsy-level">
-    <option value="" disabled selected>Bootsy Level</option>
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button class="submit-button" type="submit" value='Gimme Some More'>Gimme Some More!</button>
-</form>%>
+<div id="accordion" role="tablist" aria-multiselectable="false">
+ <div class="panel panel-default">
+   <div class="panel-heading" role="tab" id="headingOne">
+     <h4 class="panel-title">
+       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+         Share your experience!
+       </a>
+     </h4>
+   </div>
+   <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" style="margin:3%;">
+     <form class="new-post" id="new-post">
+       <div class="form-group">
+         <label for="exampleInputEmail1">Company Name</label>
+         <input type="email" class="form-control " id="post-company" aria-describedby="emailHelp" placeholder="Enter company name">
+         <small id="emailHelp" class="form-text text-muted">This is what company your post is in reference to. </small>
+       </div>
+
+       <fieldset class="form-group">
+         <label>I have:</label>
+         <div class="radio" id="post-interviewed">
+           <label>
+             <input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1" checked>
+             an upcoming interview with this company.
+           </label>
+         </div>
+         <div class="radio">
+           <label>
+             <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option2">
+             interviewed with this company in the past.
+           </label>
+         </div>
+       </fieldset>
+
+       <div class="form-group">
+         <label for="exampleTextarea">Interview details:</label>
+         <textarea class="form-control" id="exampleTextarea" rows="5" placeHolder="Share you recent experience, or talk about an upcoming interview you will be having."></textarea>
+       </div>
+       <div class="form-group">
+
+       <fieldset class="form-group">
+         <label>If you have previously interviewed at a company, how was your overall experience?</label>
+         <div class="radio">
+           <label>
+             <input type="radio" name="optionsRadios2" id="optionsRadios3" value="option1" checked>
+             Positive
+           </label>
+         </div>
+         <div class="radio">
+           <label>
+             <input type="radio" name="optionsRadios2" id="optionsRadios4" value="option2">
+             Negative
+           </label>
+         </div>
+         <div class="radio disabled">
+           <label>
+             <input type="radio" name="optionsRadios2" id="optionsRadios5" value="option3" disabled>
+             Neutral
+           </label>
+         </div>
+       </fieldset>
+
+
+       <button type="submit" class="btn btn-primary">Submit</button>
+     </form>
+
+   </div>
+</div>
