@@ -56,7 +56,7 @@ app.get('/auth/linkedin',
   });
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/',
+  successRedirect: '/dashboard',
   failureRedirect: '/login'
 }));
 

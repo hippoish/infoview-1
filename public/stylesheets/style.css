@@ -13,6 +13,8 @@ body {
 .link {
   color: #eaeaea;
   border: 2px solid #af0000;
+  box-shadow: 3px 3px 3px 2px #262626;
+  background-color: #3c3c3c;
   border-radius: 25px;
   padding: 1%;
   margin: 1%;
@@ -23,10 +25,17 @@ body {
   text-transform: uppercase;
 }
 
+.link:active {
+  box-shadow: 0 3px 0 #262626;
+  top: 3px;
+}
+
 /* when you hover over a link colors inverse */
 .link:hover {
-  color: #af0000;
-  border: 2px solid #eaeaea;
+  color: #C31616;
+  border: 2px solid #af0000;
+  box-shadow: 2px 2px 2px 1px #262626;
+  background-color: #282828;
   border-radius: 25px;
   padding: 1%;
   margin: 1%;
