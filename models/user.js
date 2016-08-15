@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
   linkedin: {
-    // token      : String,
+
+    token      : String,
     id         : String,
     email      : String,
     firstName  : String,
