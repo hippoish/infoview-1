@@ -13,7 +13,8 @@ function createPostHTML(post) {
   return $('<li id="post-' + post.id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '</li>'
+  + ' </strong></p><br> ' + post.content + '</li><li><span class="remove-post">X</span>'
+  + '</li>'
   );
 }
 
@@ -91,5 +92,22 @@ $(document).ready(function() {
         $postsList.append(postHTML);
       }
     )
+        // Define function that will get executed when the X is clicked on.
+    function deleteHandler(e) {
+      // Grab the parent li of the span
+      var html = $(this).parent();
+      // Get the id of the todo we are deleting
+      var id = getId(html);
+      // Use AJAX to delete the todo from our db
+      $.ajax({
+        type: "DELETE",
+        url: "/api/posts" + encodeURIComponent(id)
+      }).then(
+        // Use jquery to remove it from the DOM
+        function() {
+          html.remove();
+        }
+      );
+    }
   })
 })

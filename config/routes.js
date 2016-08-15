@@ -29,6 +29,6 @@ router.get('/auth/linkedin', passport.authenticate(
 router.get('/', function(req, res, next){
   console.log('get request');
   res.render('dashboard', {title: 'Infoviewwwwwww', user: req.user});
-};)
+});
 
 module.exports = router;

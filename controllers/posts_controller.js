@@ -67,15 +67,15 @@ function create(req, res, next) {
 //   })
 // }
 //
-// function destroy(req, res, next) {
-//   var id = req.params.id;
-//   console.log('Say toodaloo, post, Bootsy!!', id);
-//
-//   Post.remove({_id: id}, function(err) {
-//     // only triggers if there is a major problem; will not fail if trying to remove something that isn't there
-//     if (err) next(err);
-//
-//     // let us know if it's a successful delete
-//     res.json({msg: 'Just let that post chill, baby!'});
-//   });
-// }
+function destroy(req, res, next) {
+  var id = req.params.id;
+  console.log('Say toodaloo, post, Bootsy!!', id);
+
+  Post.remove({_id: id}, function(err) {
+    // only triggers if there is a major problem; will not fail if trying to remove something that isn't there
+    if (err) next(err);
+
+    // let us know if it's a successful delete
+    res.json({msg: 'Just let that post chill, baby!'});
+  });
+}
