@@ -8,13 +8,13 @@ var postsController = require('../controllers/posts_controller')
 
 // route path:
 router.route('/')
-  .get(pagesController.home);
+  .get(pagesController.home)
 // about path:
 router.route('/about')
   .get(pagesController.about);
 // dashboard path:
 router.route('/dashboard')
-  .get(pagesController.dashboard);
+  .get(pagesController.dashboard)
 
 // API for posts
 router.route('/api/posts')
@@ -23,9 +23,12 @@ router.route('/api/posts')
 
 //LINKEDIN OAUTH
 router.get('/auth/linkedin', passport.authenticate(
- 'linkedin'
- // ,
- // { scope: ['profile', 'email'] }
+ 'linkedin', { scope: ['profile', 'email'] }
 ));
+
+router.get('/', function(req, res, next){
+  console.log('get request');
+  res.render('dashboard', {title: 'Infoviewwwwwww', user: req.user});
+};)
 
 module.exports = router;
