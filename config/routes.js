@@ -1,4 +1,4 @@
-var passport = require('passport')
+var passport = require('passport');
 var express  = require('express');
 var router   = new express.Router();
 
@@ -21,18 +21,40 @@ router.route('/api/posts')
   .get(postsController.index)
   .post(postsController.create);
 
-// API for deleting posts
+// deleting posts from API
 router.route('/api/posts/:id')
   .delete(postsController.destroy);
 
-//LINKEDIN OAUTH
-router.get('/auth/linkedin', passport.authenticate(
- 'linkedin', { scope: ['profile', 'email'] }
-));
-
+////////////////////////////////////////////
+///////////// LINKEDIN OAUTH ///////////////
+////////////////////////////////////////////
 router.get('/', function(req, res, next){
   console.log('get request');
-  res.render('dashboard', {title: 'Infoviewwwwwww', user: req.user});
+  res.render('pages/dashboard', {user: req.user});
+});
+
+router.get('/auth/linkedin', passport.authenticate(
+ ('linkedin')
+ //, { scope: ['profile', 'email'] }
+));
+
+// router.get('/oauth2callback', passport.authenticate(
+//   'linkedin',
+//   {
+//     successRedirect: '/dashboard',
+//     failureRedirect: '/'
+//   }
+// ));
+
+router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+  successRedirect : '/dashboard',
+  failureRedirect : '/login'
+}));
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+
 });
 
 module.exports = router;

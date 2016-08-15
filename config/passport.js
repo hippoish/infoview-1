@@ -17,23 +17,25 @@ passport.use(new LinkedInStrategy({
 // linkedin will send back token and profile, we will give a cb fcn
 function(accessToken, refreshToken, profile, cb) {
   // asynchronous verification
-  // console.log(profile)
+  console.log(profile)
   console.log(profile.id);
-  console.log(profile.email);
-  console.log(profile.firstName);
-  console.log(profile.lastName);
+  console.log(profile.emails[0]);
+  console.log(profile.displayName);
+  // console.log(r_basicprofile)
+  // console.log(profile.lastName);
 
   // asynchronous verification
   process.nextTick(function () {
 
     // find the user in the db based on their linkedin id
-    User.findOne({'linkedinId': profile.id}, function(err, user) {
+    User.findOne({'linkedin.id': profile.id}, function(err, user) {
+      // console.log('user is ' + user.linkedin.email)
       // if there's an error:
       if(err) return cb(err);
 
       // if the user is found, log them in:
       if(user) {
-        console.log('found user');
+        console.log('found user' + user);
         return cb(null, user);
       } else {
         console.log('creating user');
@@ -43,7 +45,7 @@ function(accessToken, refreshToken, profile, cb) {
             token      : profile.token,
             id         : profile.id,
             email      : profile.emails[0].value,
-            firstName  : profile.firstName,
+            firstName  : profile.displayName,
             lastName   : profile.lastName,
             industry   : profile.industry,
             headline   : profile.headline,
@@ -61,7 +63,7 @@ function(accessToken, refreshToken, profile, cb) {
           return cb(null, newUser);
         });
       }
-    });
+    })
   });
 
 }));
