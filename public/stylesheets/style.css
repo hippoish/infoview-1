@@ -1,20 +1,52 @@
 body {
+  background: url('../images/ninjas_background.png')no-repeat center center fixed;
+  background-size: cover;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
   padding-top: 70px; /* fix nav overlap */
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #eaeaea;
 }
 
+/* the linked to redirect to new post */
 .link {
-  color: #2d71b4;
-}
-
-.link:hover {
+  color: #eaeaea;
+  border: 2px solid #af0000;
+  border-radius: 25px;
+  padding: 1%;
+  margin: 1%;
   text-decoration: none;
-  color: #878787;
+  font-family: herculanum;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
-body {
-  padding-top: 70px;
+/* when you hover over a link colors inverse */
+.link:hover {
+  color: #af0000;
+  border: 2px solid #eaeaea;
+  border-radius: 25px;
+  padding: 1%;
+  margin: 1%;
+  text-decoration: none;
+  font-family: herculanum;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* list of posts */
+.groupList {
+  padding: 2%;
+  background-color: #2d2d2d;
+  border: 2px solid #3C0D0E;
+}
+
+strong {
+  font-family: herculanum;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-style: bold;
 }

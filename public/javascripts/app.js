@@ -10,9 +10,9 @@ var $postContent;
 // make the fcn to dynamically create an html representation of the json returned from the json
 function createPostHTML(post) {
   return $('<li id="post-' + post.id +
-  '" class="interviewed-' + post.interviewed
-  + ' list-group-item"><strong>' + post.company
-  + ' </strong>- ' + post.content + '</li>'
+  '" class="groupList interviewed-' + post.interviewed
+  + ' list-group-item"><p>Company: <strong>' + post.company
+  + ' </strong></p><br> ' + post.content + '</li>'
   );
 }
 

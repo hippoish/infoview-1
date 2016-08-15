@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%- include('../partials/head') %>
+  <% include ../partials/head %>
 </head>
 <body>
-  <%- include('../partials/nav', {page: 'dashboard'}) %>
-  <div class="container posts-content">
-
-    <div class="row">
-      <div class="posts">
-        <h4 class="custom-font">Interviews suck!!!! Talk here</h4>
-        <article class="my-life posts-column">
-          <ul id="posts-list" class='list-group'>
-            <!-- <li class="todo-item bootsy1">
-              Wear star-shaped glasses
-              <input type="checkbox" name="todo[completed]" checked />
-              <span class="remove-item">X</span>
-            </li> -->
-          </ul>
-        </article>
-      </div>
-    </div>
-  </div>
+  <% include ../partials/nav %>
   <% include ../partials/form %>
-  <%- include('../partials/scripts') %>
+  <div class='container posts-content'>
+        <h4 class='custom-font'>Check out recent experience others have had during interviews, or talk about an upcoming interviews others will be having.</h4>
+          <ul id='posts-list' class='list-group'>
+            <!-- THIS IS WHERE THE POST LIST WILL APPEND -->
+          </ul>
+      </div>
+  <% include ../partials/scripts %>
 </body>
 </html>
