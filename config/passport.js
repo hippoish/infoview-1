@@ -46,15 +46,14 @@ function(accessToken, refreshToken, profile, cb) {
         // if no user is found with that linkedin id, create them by setting fields from the returned profile attributes
         var newUser = new User({
           linkedin : {
-            // token       : profile.token,
             id          : profile.id,
             email       : profile.emails[0].value,
             firstName   : profile._json.firstName,
             lastName    : profile._json.lastName,
-            // location    : profile._json.location.name,
-            industry    : profile._json.industry,
             headline    : profile._json.headline,
-            profileUrl  : profile._json.profileUrl,
+            location    : profile._json.location.name,
+            industry    : profile._json.industry,
+            profileUrl  : profile._json.publicProfileUrl,
             pictureUrl  : profile._json.pictureUrl
           }
         });
