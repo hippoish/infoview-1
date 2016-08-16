@@ -1,14 +1,14 @@
 var Post = require('../models/Post')
 
 module.exports = {
-  home: home,
+  landing: home,
   about: about,
   dashboard: dashboard
 }
 
 // action to render the home page
 function home(req, res, next) {
-  res.render('pages/home');
+  res.render('pages/landing');
 }
 
 // action to render the about page
