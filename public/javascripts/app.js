@@ -7,7 +7,9 @@ var $interviewed;
 var $posExp;
 var $bonusTips;
 var $postContent;
-var $postItem
+var $postItem;
+var $postsListSensei;
+var $postsListGrasshopper;
 
 // fcn to dynamically create an html representation of the json returned from the json
 function createPostHTML(post) {
@@ -26,12 +28,13 @@ function createPostHTML(post) {
 function getId(jqueryThing) {
   return jqueryThing.attr('id').slice(5);
 }
+
 // Define function that will get executed when the checkbox is clicked
 function updateHandler(e) {
   // Grab the parent li of the checkbox that triggered the event
   var html = $(this).parent();
   // Get the id of the todo we are updating
-  var id = getId(html);
+  var id   = getId(html);
   // User AJAX to update the todo in our db
   $.ajax({
     type: "PATCH",
@@ -52,6 +55,7 @@ function updateHandler(e) {
     }
   )
 }
+
 // Define function that will get executed when the X is clicked on.
 function deleteHandler(e) {
   console.log("deleteHandler enabled")
@@ -75,14 +79,14 @@ function deleteHandler(e) {
 $(document).ready(function() {
   // grab all needed DOM elements
   // column that we are showing all the posts in
-  $postsList       = $('#posts-list');
-  $form            = $('#new-post');
-  $postCompany     = $('#post-company');
-  $postBonusTips   = $('#post-bonusTips');
-  $interviewed     = $('input[name=optionsRadios1]:checked');
-  $posExp          = $('input[name=optionsRadios2]:checked');
-  $postContent     = $('#post-content');
-
+  $senseiPosts      = $('#sensei-posts');
+  $grasshopperPosts = $('#grasshopper-posts');
+  $form             = $('#new-post');
+  $postCompany      = $('#post-company');
+  $postBonusTips    = $('#post-bonusTips');
+  $interviewed      = $('input[name=optionsRadios1]:checked');
+  $posExp           = $('input[name=optionsRadios2]:checked');
+  $postContent      = $('#post-content');
 
   //get all posts json using ajax
   $.ajax({
@@ -97,8 +101,11 @@ $(document).ready(function() {
         var postHTML = createPostHTML(jsonPost);
           console.log(postHTML);
         // check if post is a completed interview and make it the correct color
-        $postsList.append(postHTML);
-
+        if (jsonPost.interviewed) {
+          $senseiPosts.append(postHTML);
+        } else {
+          $grasshopperPosts.append(postHTML);
+        }
       })
     }
   )
@@ -155,8 +162,7 @@ $(document).ready(function() {
  // $bootsyTodo.on("click", ":checkbox", updateHandler);
  // $personalTodo.on("click", ".remove-item", deleteHandler);
   $postsList.on("click", ".remove-post", deleteHandler);
-    $postsList.on("click", function(){
-      console.log("clicked me!!!! ouch!")
-
-    });
+  $postsList.on("click", function() {
+    console.log("clicked me!!!! ouch!")
+  });
 });
