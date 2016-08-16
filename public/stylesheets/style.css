@@ -59,6 +59,10 @@ strong {
   font-style: bold;
 }
 
+.titleName {
+  font-family: herculanum;
+}
+
 /*TODOS PAGE*/
 
 .todos-content {
