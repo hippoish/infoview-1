@@ -2,10 +2,9 @@ var Post = require('../models/Post');
 
 module.exports = {
   index:   index,
-  create:  create
-  // ,
+  create:  create,
   // update:  update,
-  // destroy: destroy
+  destroy: destroy
 }
 
 // return all posts from the db as json
@@ -25,13 +24,13 @@ function index(req, res, next) {
 function create(req, res, next) {
   console.log('Brand new post, Bobble', req.body);
 
-  var newPost =   new Post();
-  newPost.company = req.body.company;
-  newPost.content = req.body.content;
-  newPost.interviewed = req.body.interviewed;
+  var newPost          = new Post();
+  newPost.company      = req.body.company;
+  newPost.content      = req.body.content;
+  newPost.interviewed  = req.body.interviewed;
   newPost.positive_exp = req.body.positive_exp;
-  newPost.bonus_tips = req.body.bonus_tips;
-  newPost.replies = req.body.replies;
+  newPost.bonus_tips   = req.body.bonus_tips;
+  newPost.replies      = req.body.replies;
 
   newPost.save(function(err, savedPost) {
     if (err) next(err);

@@ -7,14 +7,71 @@ var $interviewed;
 var $posExp;
 var $bonusTips;
 var $postContent;
+var $postItem;
+var $postsListSensei;
+var $postsListGrasshopper;
 
 // fcn to dynamically create an html representation of the json returned from the json
 function createPostHTML(post) {
-  return $('<li id="post-' + post.id +
+  return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '</li><li><span class="remove-post">X</span>'
-  + '</li>'
+  + ' </strong></p><br> ' + post.content + '<br><span class="remove-post" style="float:right;">Delete</span></li>'
+  );
+}
+
+/////////////////////////////////////////////////
+//////////////GET BY ID AND DELETE///////////////
+/////////////////////////////////////////////////
+
+// A function that will poull out the id from the li so I don't need to add the id to both the span for the delete and the checkbox for the update.
+function getId(jqueryThing) {
+  return jqueryThing.attr('id').slice(5);
+}
+
+// Define function that will get executed when the checkbox is clicked
+function updateHandler(e) {
+  // Grab the parent li of the checkbox that triggered the event
+  var html = $(this).parent();
+  // Get the id of the todo we are updating
+  var id   = getId(html);
+  // User AJAX to update the todo in our db
+  $.ajax({
+    type: "PATCH",
+    url: "/api/posts" + encodeURIComponent(id),
+    data: {} // Since we are only allowing the basic update of changing the todo completed status, I am skipping properly putting together the data of the todo because we will not need it in this special use case.
+  }).then(
+    function(jsonPost) {
+      // Remove the old todo
+      html.remove();
+      // Create a new html snippet to represent the updated todo.
+      var postHTML = createPostHTML(jsonPost);
+      // Put the html for the updated todo in the appropriate column
+      // if(jsonTodo.completed) {
+      //   $personalTodo.append(todoHTML);
+      // } else {
+      //   $bootsyTodo.append(todoHTML);
+      // }
+    }
+  )
+}
+
+// Define function that will get executed when the X is clicked on.
+function deleteHandler(e) {
+  console.log("deleteHandler enabled")
+  // Grab the parent li of the span
+  var html = $(this).parent();
+  // Get the id of the todo we are deleting
+  var id = getId(html);
+  // Use AJAX to delete the todo from our db
+  $.ajax({
+    type: "DELETE",
+    url: "/api/posts/" + encodeURIComponent(id)
+  }).then(
+    // Use jquery to remove it from the DOM
+    function(jsonPost) {
+      html.remove();
+    }
   );
 }
 
@@ -22,13 +79,14 @@ function createPostHTML(post) {
 $(document).ready(function() {
   // grab all needed DOM elements
   // column that we are showing all the posts in
-  $postsList       = $('#posts-list');
-  $form            = $('#new-post');
-  $postCompany     = $('#post-company');
-  $interviewed     = $('input[name=optionsRadios1]:checked');
-  $posExp          = $('input[name=optionsRadios2]:checked');
-  // $bonusTips       = $('');
-  $postContent     = $('#post-content');
+  $senseiPosts      = $('#sensei-posts');
+  $grasshopperPosts = $('#grasshopper-posts');
+  $form             = $('#new-post');
+  $postCompany      = $('#post-company');
+  $postBonusTips    = $('#post-bonusTips');
+  $interviewed      = $('input[name=optionsRadios1]:checked');
+  $posExp           = $('input[name=optionsRadios2]:checked');
+  $postContent      = $('#post-content');
 
   //get all posts json using ajax
   $.ajax({
@@ -41,10 +99,13 @@ $(document).ready(function() {
       jsonPosts.forEach(function(jsonPost) {
         // convert to html
         var postHTML = createPostHTML(jsonPost);
-
+          console.log(postHTML);
         // check if post is a completed interview and make it the correct color
-        $postsList.append(postHTML);
-
+        if (jsonPost.interviewed) {
+          $senseiPosts.append(postHTML);
+        } else {
+          $grasshopperPosts.append(postHTML);
+        }
       })
     }
   )
@@ -77,6 +138,7 @@ $(document).ready(function() {
         $postContent.val('');
         $interviewed.val('');
         $posExp.val('');
+        $postBonusTips.val('');
         // return new post as json
         return jsonPost;
       },
@@ -92,22 +154,15 @@ $(document).ready(function() {
         $postsList.append(postHTML);
       }
     )
-        // Define function that will get executed when the X is clicked on.
-    function deleteHandler(e) {
-      // Grab the parent li of the span
-      var html = $(this).parent();
-      // Get the id of the todo we are deleting
-      var id = getId(html);
-      // Use AJAX to delete the todo from our db
-      $.ajax({
-        type: "DELETE",
-        url: "/api/posts" + encodeURIComponent(id)
-      }).then(
-        // Use jquery to remove it from the DOM
-        function() {
-          html.remove();
-        }
-      );
-    }
   })
-})
+
+// Attach event handlers through delegation.
+ // When a selector is provided(as the second argument, i.e. ":checkbox" or ".remove-item"), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
+ // $personalTodo.on("click", ":checkbox", updateHandler);
+ // $bootsyTodo.on("click", ":checkbox", updateHandler);
+ // $personalTodo.on("click", ".remove-item", deleteHandler);
+  $postsList.on("click", ".remove-post", deleteHandler);
+  $postsList.on("click", function() {
+    console.log("clicked me!!!! ouch!")
+  });
+});

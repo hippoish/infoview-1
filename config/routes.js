@@ -21,6 +21,10 @@ router.route('/api/posts')
   .get(postsController.index)
   .post(postsController.create);
 
+// deleting posts from API
+router.route('/api/posts/:id')
+  .delete(postsController.destroy);
+
 ////////////////////////////////////////////
 ///////////// LINKEDIN OAUTH ///////////////
 ////////////////////////////////////////////

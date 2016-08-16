@@ -6,15 +6,35 @@
 <body>
   <% include ../partials/nav %>
   <% include ../partials/form %>
-  <center>
+  <%# <center>
     <img src="images/karatekid.png" style='image-size:70%;'>
-  </center>
-  <div class='container posts-content'>
-        <h4 class='custom-font'>Check out recent experience others have had during interviews, or talk about an upcoming interviews others will be having.</h4>
+  </center>%>
+
+<div class="row">
+<div class="container posts-content">
+     <div class="one-half column col-md-6">
+       <h4 class='custom-font'>Sensei</h4>
+       <p>Share your experience with grasshoppers facing upcoming interviews.</p>
+       <article class="my-life posts-column">
+         <ul class="posts-list list-group" id="sensei-posts">
+          <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
           <ul id='posts-list' class='list-group'>
             <!-- THIS IS WHERE THE POST LIST WILL APPEND -->
           </ul>
-      </div>
+         </ul>
+       </article>
+     </div>
+     <div class="one-half column  col-md-6">
+       <h4 class="custom-font">Grasshoppers</h4>
+       <p>Post if you are looking for interview advice from wise Senseis.</p>
+       <article class="choices posts-column">
+         <ul class="posts-list group-list" id="grasshopper-posts">
+           <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
+         </ul>
+       </article>
+     </div>
+   </div>
+ </div>
   <% include ../partials/scripts %>
 </body>
 </html>
