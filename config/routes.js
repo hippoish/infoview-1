@@ -8,7 +8,7 @@ var postsController = require('../controllers/posts_controller')
 
 // route path:
 router.route('/')
-  .get(pagesController.home)
+  .get(pagesController.landing)
 // about path:
 router.route('/about')
   .get(pagesController.about);

@@ -1,6 +1,5 @@
 console.log('app.js loaded');
 // globally define jquery variables to be used later
-var $postsList;
 var $form;
 var $postCompany;
 var $interviewed;
@@ -12,6 +11,7 @@ var $postsListSensei;
 var $postsListGrasshopper;
 
 // fcn to dynamically create an html representation of the json returned from the json
+// THIS IS WORKING
 function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
@@ -114,6 +114,8 @@ $(document).ready(function() {
     // stop the default behavior from clicking on the submit buttton
     e.preventDefault();
 
+    $interviewed      = $('input[name=optionsRadios1]:checked');
+
     // create the new post from the values of the form fields
     var newPost = {
       company      : $postCompany.val(),
@@ -151,18 +153,20 @@ $(document).ready(function() {
         // use previously defined fcn to create an html representation of the post
         var postHTML = createPostHTML(jsonPost);
         // append the html post to the DOM
-        $postsList.append(postHTML);
+        if (jsonPost.interviewed) {
+          $senseiPosts.append(postHTML);
+        } else {
+          $grasshopperPosts.append(postHTML);
+        }
       }
     )
   })
 
 // Attach event handlers through delegation.
  // When a selector is provided(as the second argument, i.e. ":checkbox" or ".remove-item"), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
- // $personalTodo.on("click", ":checkbox", updateHandler);
- // $bootsyTodo.on("click", ":checkbox", updateHandler);
- // $personalTodo.on("click", ".remove-item", deleteHandler);
-  $postsList.on("click", ".remove-post", deleteHandler);
-  $postsList.on("click", function() {
-    console.log("clicked me!!!! ouch!")
-  });
+ $senseiPosts.on("click", ":checkbox", updateHandler);
+ $grasshopperPosts.on("click", ":checkbox", updateHandler);
+ $senseiPosts.on("click", ".remove-post", deleteHandler);
+ $grasshopperPosts.on("click", ".remove-post", deleteHandler);
+
 });

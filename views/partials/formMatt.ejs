@@ -1,5 +1,4 @@
 <!-- BEGIN OF NEW POST FORM -->
-
 <div id='accordion' role='tablist' aria-multiselectable='false'>
  <div>
    <div role='tab' id='headingOne'>
@@ -14,56 +13,49 @@
         <div class="panel-body">
          <form class='new-post' id='new-post'>
            <div class='form-group'>
-
       <!-- BEGIN COMPANY NAME -->
-
              <label>Company Name</label>
              <input class='form-control ' id='post-company' aria-describedby='emailHelp' placeholder='Enter company name'>
              <small class='form-text text-muted'>This is what company your post is in reference to. </small>
            </div>
-
     <!-- END COMPANY NAME -->
     <!-- BEGIN INERVIEWED OR ASKING FOR HELP -->
-
            <fieldset class='form-group'>
-             <label for='optionsRadios1'>I have:</label>
-             <div class='radio'>
+             <label>I have:</label>
+             <div class='radio' id='post-interviewed'>
                <label>
-                 <input type='radio' name='optionsRadios1' id='optionsRadios1' value=false checked>
+                 <!-- <input type='radio' name='optionsRadios1' id='optionsRadios1' value='false' > -->
+              <input type="radio" name="optionsRadios1" value='false'>
                  an upcoming interview with this company.
                </label>
              </div>
              <div class='radio'>
                <label>
-                 <input type='radio' name='optionsRadios1' id='optionsRadios1' value=true>
+                 <input type="radio" name="optionsRadios1" value='true'>
                  interviewed with this company in the past.
                </label>
              </div>
            </fieldset>
-
     <!-- END INERVIEWED OR ASKING FOR HELP -->
     <!-- BEGIN CONTENT FIELD -->
-
            <div class='form-group'>
              <label for='exampleTextarea'>Interview details:</label>
              <textarea class='form-control' id='post-content' rows='5' placeHolder='Share you recent experience, or talk about an upcoming interview you will be having.'></textarea>
            </div>
            <div class='form-group'>
-
       <!-- END CONTENT FIELD -->
       <!-- BEGIN OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
-
            <fieldset class='form-group'>
              <label>If you have previously interviewed at a company, how was your overall experience?</label>
              <div class='radio'>
                <label>
-                 <input type='radio' name='optionsRadios2' id='optionsRadios2' value='true' checked>
+                 <input type='radio' name='optionsRadios2' id='optionsRadios3' value='false' >
                  Positive
                </label>
              </div>
              <div class='radio'>
                <label>
-                 <input type='radio' name='optionsRadios2' id='optionsRadios2' value='false'>
+                 <input type='radio' name='optionsRadios2' id='optionsRadios4' value='false' >
                  Negative
                </label>
              </div>
@@ -74,22 +66,16 @@
                </label>
              </div>%>
            </fieldset>
-
         <!-- END OF OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
-
         <!-- BEGIN BONUS FIELD -->
-
                <div class='form-group'>
                  <label for='exampleTextarea'>Bonus Tips:</label>
                  <textarea class='form-control' id='post-bonusTips' rows='3' placeHolder='Any bonus tips to prepare you and others for the next time you interview at that company?'></textarea>
                </div>
                <div class='form-group'>
-
           <!-- END BONUS TIPS FIELD -->
         <!-- BEGIN SUBMIT BUTTON -->
-
            <button type='submit' class='btn btn-danger'>Submit</button>
-
         <!-- END SUBMIT BUTTON -->
          </form>
         </div>
@@ -97,6 +83,5 @@
     </div>
   </div>
 </div>
-
-
 <!-- END OF NEW POST FORM -->
+Add Comment Collaps
