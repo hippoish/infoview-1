@@ -1,12 +1,8 @@
 console.log('app.js loaded');
 // globally define jquery variables to be used later
-// the entire new post form
 var $form;
-// company from new post
 var $postCompany;
-// interviewed of new post - true or false
 var $interviewed;
-// was it a positive experience
 var $posExp;
 var $bonusTips;
 var $postContent;
@@ -82,15 +78,9 @@ function deleteHandler(e) {
 // wait for the doucment to load before performing the following
 $(document).ready(function() {
   // grab all needed DOM elements
-  // column that we are showing all the posts in
   $senseiPosts      = $('#sensei-posts');
   $grasshopperPosts = $('#grasshopper-posts');
   $form             = $('#new-post');
-  $postCompany      = $('#post-company');
-  $postBonusTips    = $('#post-bonusTips');
-  $interviewed      = $('input[name=optionsRadios1]:checked');
-  $posExp           = $('input[name=optionsRadios2]:checked');
-  $postContent      = $('#post-content');
 
   //get all posts json using ajax
   $.ajax({
@@ -114,24 +104,29 @@ $(document).ready(function() {
     }
   )
 
+  // what to do when the form submit button is clicked
   $form.on('submit', function(e) {
     // stop the default behavior from clicking on the submit buttton
     e.preventDefault();
-
+    // grab all needed DOM elements
+    $postCompany      = $('#post-company');
+    $postBonusTips    = $('#post-bonusTips');
     $interviewed      = $('input[name=optionsRadios1]:checked');
+    $posExp           = $('input[name=optionsRadios2]:checked');
+    $postContent      = $('#post-content');
 
     // create the new post from the values of the form fields
     var newPost = {
       company      : $postCompany.val(),
       content      : $postContent.val(),
       interviewed  : $interviewed.val(),
-      positive_exp : $posExp.val()
-      // bonus_tips   :
+      positive_exp : $posExp.val(),
+      bonus_tips   : $postBonusTips.val()
     }
 
     console.log(newPost)
-    // use ajax to add the new todo to our db:
 
+    // use ajax to add the new todo to our db:
     $.ajax({
       method: 'POST',
       url:    '/api/posts',
