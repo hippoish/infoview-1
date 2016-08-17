@@ -1,47 +1,19 @@
-<%# <!-- BEGIN OF NEW POST FORM -->
-
-<div id='accordion' role='tablist' aria-multiselectable='false'>
- <div>
-   <div role='tab' id='headingOne'>
-     <h4 class='panel-title'>
-       <a data-toggle='collapse' class='link' id="formField" data-parent='#accordion' href='#collapseOne' aria-expanded='false' aria-controls='collapseOne'>
-         [Share your experience]<img src="images/ninjaman.png" alt="InfoView">
-       </a>
-     </h4>
-   </div>%>
-
-<button type="button" class="btn link" data-toggle="modal" data-target="#myModal">
-  [Share your experience]
-</button>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
-    </div>
+<!-- BEGIN OF NEW POST FORM -->
+<h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
+  </div>
     <div class="modal-body">
+      <form class='new-post' id='new-post'>
 
-         <form class='new-post' id='new-post'>
-           <div class='form-group'>
+          <!-- BEGIN COMPANY NAME -->
+          <div class='form-group'>
+            <label>Company Name</label>
+            <input class='form-control ' id='post-company' aria-describedby='emailHelp' placeholder='Enter company name'>
+            <small class='form-text text-muted'>This is what company your post is in reference to. </small>
+          </div>
+          <!-- END COMPANY NAME -->
 
-      <!-- BEGIN COMPANY NAME -->
-
-             <label>Company Name</label>
-             <input class='form-control ' id='post-company' aria-describedby='emailHelp' placeholder='Enter company name'>
-             <small class='form-text text-muted'>This is what company your post is in reference to. </small>
-           </div>
-
-    <!-- END COMPANY NAME -->
-    <!-- BEGIN INERVIEWED OR ASKING FOR HELP -->
-
-           <fieldset class='form-group'>
+          <!-- BEGIN INERVIEWED OR ASKING FOR HELP -->
+          <fieldset class='form-group'>
              <label for='optionsRadios1'>I have:</label>
              <div class='radio'>
                <label>
@@ -57,8 +29,9 @@
              </div>
            </fieldset>
 
-    <!-- END INERVIEWED OR ASKING FOR HELP -->
-    <!-- BEGIN CONTENT FIELD -->
+          <!-- END INERVIEWED OR ASKING FOR HELP -->
+
+          <!-- BEGIN CONTENT FIELD -->
 
            <div class='form-group'>
              <label for='exampleTextarea'>Interview details:</label>
@@ -66,8 +39,9 @@
            </div>
            <div class='form-group'>
 
-      <!-- END CONTENT FIELD -->
-      <!-- BEGIN OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
+          <!-- END CONTENT FIELD -->
+
+          <!-- BEGIN OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
 
            <fieldset class='form-group'>
              <label>If you have previously interviewed at a company, how was your overall experience?</label>
@@ -109,17 +83,16 @@
            <button type='submit' class='btn btn-danger'>Submit</button>%>
   </form>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+<div class='modal-footer'>
+  <input type='hidden' name='user' value=<% user %>>
+  <button type="button" class="btn btn-secondary" data-dismiss='modal'>Close</button>
   <button type='submit' class='btn btn-danger'>Submit</button>
 
         <!-- END SUBMIT BUTTON -->
       </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
+
 
 
 <!-- END OF NEW POST FORM -->
