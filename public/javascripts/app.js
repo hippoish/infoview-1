@@ -1,12 +1,8 @@
 console.log('app.js loaded');
 // globally define jquery variables to be used later
-// the entire new post form
 var $form;
-// company from new post
 var $postCompany;
-// interviewed of new post - true or false
 var $interviewed;
-// was it a positive experience
 var $posExp;
 var $bonusTips;
 var $postContent;
@@ -14,14 +10,40 @@ var $postItem;
 var $postsListSensei;
 var $postsListGrasshopper;
 
-// fcn to dynamically create an html representation of the json returned from the json
-// THIS IS WORKING
+// fcn to dynamically create an html representation of the json returned from the json, including view more and delete buttons
 function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '<br><span class="remove-post" style="float:right;">Delete</span></li>'
+  + ' </strong></p><br> ' + post.content + '<br><button type="button" class="link" data-toggle="modal" data-target="#showModal"> View for more info</button><span class="remove-post" style="float:right;">Delete</span></li>'
   );
+}
+
+//function to dynamically create a modal representing the show page for each post
+function createModalHTML(post){
+  '<div class="modal fade" id="showModal post-' + post._id +
+  '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
+  '<div class="modal-dialog" role="document">' +
+      '<div class="modal-content">' +
+        '<div class="modal-header">' +
+          '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span>' +
+          '</button>' +
+          '<h4 class="modal-title" id="myModalLabel">User Name</h4>' +
+        '</div>' +
+        '<div class="modal-body">' +
+        '<h5 class="modal-title" id="myModalLabel">' + post.interviewed + '</h5>' +
+        '<h5 class="modal-title" id="myModalLabel">' + post.company + '</h5>' +
+        '<h5 class="modal-title" id="myModalLabel">' + post.content + '</h5>' +
+        '<h5 class="modal-title" id="myModalLabel">User Name</h5>' +
+        '</div>' +
+        '<div class="modal-footer">' +
+          '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+          '<button type="button" class="btn btn-primary">Save changes</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>'
 }
 
 /////////////////////////////////////////////////
@@ -82,15 +104,9 @@ function deleteHandler(e) {
 // wait for the doucment to load before performing the following
 $(document).ready(function() {
   // grab all needed DOM elements
-  // column that we are showing all the posts in
   $senseiPosts      = $('#sensei-posts');
   $grasshopperPosts = $('#grasshopper-posts');
   $form             = $('#new-post');
-  $postCompany      = $('#post-company');
-  $postBonusTips    = $('#post-bonusTips');
-  $interviewed      = $('input[name=optionsRadios1]:checked');
-  $posExp           = $('input[name=optionsRadios2]:checked');
-  $postContent      = $('#post-content');
 
   //get all posts json using ajax
   $.ajax({
@@ -114,24 +130,29 @@ $(document).ready(function() {
     }
   )
 
+  // what to do when the form submit button is clicked
   $form.on('submit', function(e) {
     // stop the default behavior from clicking on the submit buttton
     e.preventDefault();
-
+    // grab all needed DOM elements
+    $postCompany      = $('#post-company');
+    $postBonusTips    = $('#post-bonusTips');
     $interviewed      = $('input[name=optionsRadios1]:checked');
+    $posExp           = $('input[name=optionsRadios2]:checked');
+    $postContent      = $('#post-content');
 
     // create the new post from the values of the form fields
     var newPost = {
       company      : $postCompany.val(),
       content      : $postContent.val(),
       interviewed  : $interviewed.val(),
-      positive_exp : $posExp.val()
-      // bonus_tips   :
+      positive_exp : $posExp.val(),
+      bonus_tips   : $postBonusTips.val()
     }
 
     console.log(newPost)
-    // use ajax to add the new todo to our db:
 
+    // use ajax to add the new todo to our db:
     $.ajax({
       method: 'POST',
       url:    '/api/posts',
@@ -164,13 +185,39 @@ $(document).ready(function() {
         }
       }
     )
+    // make modal go away on submit
+    $('#myModal').modal('toggle');
+    return false;
+
   })
 
+
+  // $.ajax({
+  //   method: 'GET',
+  //   url: '/api/posts'
+  // }).then(
+  //   // pass it what the ajax req came back with
+  //   function listPosts(jsonPosts) {
+  //     // iterate through our array of posts
+  //     jsonPosts.forEach(function(jsonPost) {
+  //       // convert to html
+  //       var postHTML = createPostHTML(jsonPost);
+  //         console.log(postHTML);
+  //       // check if post is a completed interview and make it the correct color
+  //       if (jsonPost.interviewed) {
+  //         $senseiPosts.append(postHTML);
+  //       } else {
+  //         $grasshopperPosts.append(postHTML);
+  //       }
+  //     })
+  //   }
+  // )
 // Attach event handlers through delegation.
  // When a selector is provided(as the second argument, i.e. ":checkbox" or ".remove-item"), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
  $senseiPosts.on("click", ":checkbox", updateHandler);
  $grasshopperPosts.on("click", ":checkbox", updateHandler);
  $senseiPosts.on("click", ".remove-post", deleteHandler);
  $grasshopperPosts.on("click", ".remove-post", deleteHandler);
+
 
 });
