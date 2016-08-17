@@ -1,14 +1,14 @@
 console.log('app.js loaded');
 // globally define jquery variables to be used later
+var $senseiPosts;
+var $grasshopperPosts;
 var $form;
 var $postCompany;
 var $interviewed;
 var $posExp;
 var $bonusTips;
 var $postContent;
-var $postItem;
-var $postsListSensei;
-var $postsListGrasshopper;
+var $postUser;
 
 // fcn to dynamically create an html representation of the json returned from the json, including view more and delete buttons
 function createPostHTML(post) {
@@ -107,6 +107,7 @@ $(document).ready(function() {
   $senseiPosts      = $('#sensei-posts');
   $grasshopperPosts = $('#grasshopper-posts');
   $form             = $('#new-post');
+  $postUser         = user;
 
   //get all posts json using ajax
   $.ajax({
@@ -136,10 +137,12 @@ $(document).ready(function() {
     e.preventDefault();
     // grab all needed DOM elements
     $postCompany      = $('#post-company');
-    $postBonusTips    = $('#post-bonusTips');
     $interviewed      = $('input[name=optionsRadios1]:checked');
     $posExp           = $('input[name=optionsRadios2]:checked');
+    $bonusTips        = $('#post-bonusTips');
     $postContent      = $('#post-content');
+    $postUser         = $('#post-user');
+    console.log('post user is: ')
 
     // create the new post from the values of the form fields
     var newPost = {
@@ -147,7 +150,8 @@ $(document).ready(function() {
       content      : $postContent.val(),
       interviewed  : $interviewed.val(),
       positive_exp : $posExp.val(),
-      bonus_tips   : $postBonusTips.val()
+      bonus_tips   : $postBonusTips.val(),
+      user         : $postUser.val()
     }
 
     console.log(newPost)
