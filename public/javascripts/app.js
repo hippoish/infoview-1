@@ -118,6 +118,8 @@ $(document).ready(function() {
     // stop the default behavior from clicking on the submit buttton
     e.preventDefault();
 
+    $interviewed      = $('input[name=optionsRadios1]:checked');
+
     // create the new post from the values of the form fields
     var newPost = {
       company      : $postCompany.val(),
