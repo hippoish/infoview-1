@@ -164,6 +164,10 @@ $(document).ready(function() {
         }
       }
     )
+    /*disappear*/
+    $(this).click(function() {
+        $("#collapseOne").removeClass('in');
+    });
   })
 
 // Attach event handlers through delegation.
@@ -172,5 +176,6 @@ $(document).ready(function() {
  $grasshopperPosts.on("click", ":checkbox", updateHandler);
  $senseiPosts.on("click", ".remove-post", deleteHandler);
  $grasshopperPosts.on("click", ".remove-post", deleteHandler);
+
 
 });
