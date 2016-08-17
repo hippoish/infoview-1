@@ -1,8 +1,164 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url('../images/dojo.png')no-repeat center center fixed;
+  background-size: cover;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-top: 70px; /* fix nav overlap */
+  font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #eaeaea;
 }
 
-a {
-  color: #00B7FF;
+/* the linked to redirect to new post */
+.link {
+  color: #eaeaea;
+  border: 2px solid rgb(55, 129, 198);
+  box-shadow: 3px 3px 3px 2px #262626;
+  background-color: #3c3c3c;
+  border-radius: 25px;
+  padding: 1%;
+  margin: 2%;
+  text-decoration: none;
+  font-family: herculanum;
+  font-weight: bold;
+  font-size: 14px;
+
+  /*text-transform: uppercase;*/
+}
+
+.link:active {
+  box-shadow: 0 3px 0 #262626;
+  top: 3px;
+}
+
+/* when you hover over a link colors inverse */
+.link:hover {
+  color: rgb(55, 129, 198);
+  border: 2px solid rgb(55, 129, 198);
+  box-shadow: 2px 2px 2px 1px #262626;
+  background-color: #282828;
+  border-radius: 25px;
+  padding: 1%;
+  margin: 1%;
+  text-decoration: none;
+  font-family: herculanum;
+  font-weight: bold;
+  font-size: 14px;
+  /*text-transform: uppercase;*/
+}
+
+/* list of posts */
+.groupList {
+  padding: 2%;
+  background-color: #2d2d2d;
+  border: 2px solid #3C0D0E;
+}
+
+strong {
+  font-family: herculanum;
+  font-size: 18px;
+  font-style: bold;
+}
+
+.titleName {
+  font-family: herculanum;
+
+}
+
+.sign-in {
+width: 500px;
+height: 500px;
+border: 2px solid black;
+float: right;
+background-color: rgba(255, 255, 255, 0.5);
+}
+
+.center {
+  text-align: center;
+  padding: 30px 0;
+}
+
+img.center {
+  display: block;
+  margin: 0 auto;
+}
+
+/*TODOS PAGE*/
+
+.todos-content {
+  margin: 20px auto;
+}
+
+.todos-column {
+  height: 500px;
+  border-radius: 10px;
+}
+
+.choices {
+  color: white;
+  border: 2px solid rgb(55, 129, 198);
+  box-shadow: 3px 3px 3px 2px #262626;
+  background-color: #3c3c3c;
+  border-radius: 25px;
+}
+
+.my-life {
+  color: white;
+  border: 2px solid rgb(55, 129, 198);
+  box-shadow: 3px 3px 3px 2px #262626;
+  background-color: #3c3c3c;
+  border-radius: 25px;
+}
+
+.todos-list {
+  padding-top: 10px;
+  font-family: futura;
+  text-align: center;
+  list-style-type: none;
+}
+
+.todo-item {
+  margin: 5px auto;
+  border: 2px solid black;
+  max-width: 80%;
+  border-radius: 5px;
+}
+
+.new-todo {
+  margin: 10 auto;
+  text-align: center;
+}
+
+.input-task {
+  width: 40%;
+}
+
+.submit-button {
+  background-color: rebeccapurple;
+  color: white;
+  text-shadow: -1px 2px 1px rgba(20, 20, 20, 1);
+  font-family: 'kopio';
+}
+
+.remove-item {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: .5px 3px .5px 3px;
+  background-color: white;
+  cursor: pointer;
+  color: red;
+  display: inline-block;
+  text-shadow: 0px 0px 2px rgba(20, 20, 20, 1);
+  margin: 3px 0 0 5px;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+}
+
+/* dashboard page */
+
+#accordion {
+  background-color: rgba(239, 192, 134, 0.6);
+  border-radius: 25px;
 }
