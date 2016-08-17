@@ -107,7 +107,7 @@ $(document).ready(function() {
   $senseiPosts      = $('#sensei-posts');
   $grasshopperPosts = $('#grasshopper-posts');
   $form             = $('#new-post');
-  $postUser         = user;
+  // $postUser         = user;
 
   //get all posts json using ajax
   $.ajax({
@@ -142,7 +142,7 @@ $(document).ready(function() {
     $bonusTips        = $('#post-bonusTips');
     $postContent      = $('#post-content');
     $postUser         = $('#post-user');
-    console.log('post user is: ')
+    console.log('post user is: ', user)
 
     // create the new post from the values of the form fields
     var newPost = {
@@ -151,7 +151,7 @@ $(document).ready(function() {
       interviewed  : $interviewed.val(),
       positive_exp : $posExp.val(),
       bonus_tips   : $postBonusTips.val(),
-      user         : $postUser.val()
+      // user         : $postUser.val()
     }
 
     console.log(newPost)
