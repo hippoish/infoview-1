@@ -1,6 +1,5 @@
 console.log('app.js loaded');
 // globally define jquery variables to be used later
-var $postsList;
 var $form;
 var $postCompany;
 var $interviewed;
@@ -12,6 +11,7 @@ var $postsListSensei;
 var $postsListGrasshopper;
 
 // fcn to dynamically create an html representation of the json returned from the json
+// THIS IS WORKING
 function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
@@ -113,6 +113,8 @@ $(document).ready(function() {
   $form.on('submit', function(e) {
     // stop the default behavior from clicking on the submit buttton
     e.preventDefault();
+
+    $interviewed      = $('input[name=optionsRadios1]:checked');
 
     // create the new post from the values of the form fields
     var newPost = {
