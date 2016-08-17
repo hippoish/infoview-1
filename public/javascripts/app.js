@@ -164,13 +164,46 @@ $(document).ready(function() {
         }
       }
     )
+    /*disappear*/
+    // $(this).click(function() {
+    //     $("#collapseOne").removeClass('in');
+    // });
+    $.ajax({
+    url: "",
+    context: document.body,
+    success: function(s,x){
+        $(this).html(s);
+    }
+});
   })
 
+
+  // $.ajax({
+  //   method: 'GET',
+  //   url: '/api/posts'
+  // }).then(
+  //   // pass it what the ajax req came back with
+  //   function listPosts(jsonPosts) {
+  //     // iterate through our array of posts
+  //     jsonPosts.forEach(function(jsonPost) {
+  //       // convert to html
+  //       var postHTML = createPostHTML(jsonPost);
+  //         console.log(postHTML);
+  //       // check if post is a completed interview and make it the correct color
+  //       if (jsonPost.interviewed) {
+  //         $senseiPosts.append(postHTML);
+  //       } else {
+  //         $grasshopperPosts.append(postHTML);
+  //       }
+  //     })
+  //   }
+  // )
 // Attach event handlers through delegation.
  // When a selector is provided(as the second argument, i.e. ":checkbox" or ".remove-item"), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
  $senseiPosts.on("click", ":checkbox", updateHandler);
  $grasshopperPosts.on("click", ":checkbox", updateHandler);
  $senseiPosts.on("click", ".remove-post", deleteHandler);
  $grasshopperPosts.on("click", ".remove-post", deleteHandler);
+
 
 });

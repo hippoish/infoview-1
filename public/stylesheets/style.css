@@ -26,7 +26,6 @@ body {
 
 .link:active {
   box-shadow: 0 3px 0 #262626;
-  top: 3px;
 }
 
 /* when you hover over a link colors inverse */
@@ -37,7 +36,7 @@ body {
   background-color: #282828;
   border-radius: 25px;
   padding: 1%;
-  margin: 1%;
+  margin: 2%;
   text-decoration: none;
   font-family: herculanum;
   font-weight: bold;
