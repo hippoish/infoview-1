@@ -159,17 +159,10 @@ $(document).ready(function() {
         }
       }
     )
-    /*disappear*/
-    // $(this).click(function() {
-    //     $("#collapseOne").removeClass('in');
-    // });
-    $.ajax({
-    url: "",
-    context: document.body,
-    success: function(s,x){
-        $(this).html(s);
-    }
-});
+    // make modal go away on submit
+    $('#myModal').modal('toggle');
+    return false;
+
   })
 
 
