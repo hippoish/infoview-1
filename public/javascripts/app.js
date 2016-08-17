@@ -1,9 +1,12 @@
 console.log('app.js loaded');
 // globally define jquery variables to be used later
-var $postsList;
+// the entire new post form
 var $form;
+// company from new post
 var $postCompany;
+// interviewed of new post - true or false
 var $interviewed;
+// was it a positive experience
 var $posExp;
 var $bonusTips;
 var $postContent;
@@ -12,6 +15,7 @@ var $postsListSensei;
 var $postsListGrasshopper;
 
 // fcn to dynamically create an html representation of the json returned from the json
+// THIS IS WORKING
 function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
