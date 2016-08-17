@@ -14,34 +14,31 @@
   [Share your experience]
 </button>
 
-
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
-    </div>
-    <div class="modal-body">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
+      </div>
 
-         <form class='new-post' id='new-post'>
-           <div class='form-group'>
+      <div class="modal-body">
 
-      <!-- BEGIN COMPANY NAME -->
+        <form class='new-post' id='new-post'>
 
-             <label>Company Name</label>
-             <input class='form-control ' id='post-company' aria-describedby='emailHelp' placeholder='Enter company name'>
-             <small class='form-text text-muted'>This is what company your post is in reference to. </small>
-           </div>
+          <!-- BEGIN COMPANY NAME -->
+          <div class='form-group'>
+            <label>Company Name</label>
+            <input class='form-control ' id='post-company' aria-describedby='emailHelp' placeholder='Enter company name'>
+            <small class='form-text text-muted'>This is what company your post is in reference to. </small>
+          </div>
+          <!-- END COMPANY NAME -->
 
-    <!-- END COMPANY NAME -->
-    <!-- BEGIN INERVIEWED OR ASKING FOR HELP -->
-
-           <fieldset class='form-group'>
+          <!-- BEGIN INERVIEWED OR ASKING FOR HELP -->
+          <fieldset class='form-group'>
              <label for='optionsRadios1'>I have:</label>
              <div class='radio'>
                <label>
@@ -109,7 +106,9 @@
            <button type='submit' class='btn btn-danger'>Submit</button>%>
   </form>
 </div>
+
 <div class="modal-footer">
+  <input type="hidden" name="user" value=<%= user %>>
   <button type="button" class="btn btn-secondary" data-dismiss='modal'>Close</button>
   <button type='submit' class='btn btn-danger'>Submit</button>
 

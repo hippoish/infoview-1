@@ -21,5 +21,5 @@ function about(req, res, next) {
 
 // action to render the dashboard with posts list
 function dashboard(req, res, next) {
-  res.render('pages/dashboard');
+  res.render('pages/dashboard', {current_user: global.user});
 };

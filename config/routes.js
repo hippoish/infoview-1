@@ -14,7 +14,7 @@ router.route('/about')
   .get(pagesController.about);
 // dashboard path:
 router.route('/dashboard')
-  .get(pagesController.dashboard)
+  .get(pagesController.dashboard);
 
 // API for posts
 router.route('/api/posts')
