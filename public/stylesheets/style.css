@@ -297,6 +297,6 @@ input[type=checkbox] {
 /* dashboard page */
 
 #accordion {
-  background-color: rgba(239, 192, 134, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 25px;
 }
