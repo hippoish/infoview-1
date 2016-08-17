@@ -22,8 +22,6 @@ body {
   font-family: herculanum;
   font-weight: bold;
   font-size: 14px;
-
-  /*text-transform: uppercase;*/
 }
 
 .link:active {
@@ -63,7 +61,6 @@ strong {
 .titleName {
   font-family: herculanum;
   color: black;
-
 }
 
 /*._m241u {
@@ -132,9 +129,6 @@ strong {
       margin-right: -50%;
   }
 
-}
-}
-
     /*-webkit-box-flex: 0;
     -webkit-flex-grow: 0;
     -ms-flex-positive: 0;
@@ -170,9 +164,8 @@ strong {
 }
 
 .about-description {
-
   padding: 5%;
-text-align: center;
+  text-align: center;
   color: black;
   font-size: 20px;
 }
@@ -183,16 +176,27 @@ text-align: center;
 }
 
 .sign-in {
-width: 400px;
-height: 500px;
-border: 1px solid black;
-float: right;
-background-color: rgba(255, 255, 255, 0.7);
+  width: 400px;
+  height: 500px;
+  border: 1px solid black;
+  float: right;
+  background-color: rgba(255, 255, 255, 0.7);
   padding-top: 0;);
   border-radius: 10px;
 }
 
 .sign-in-picture {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  float: left;
+  background-color: rgba(255, 255, 255, 0.3);`
+  padding-top: 0;
+
+
+}
+
+.sign-in {
 width: 500px;
 height: 500px;
 border: 1px solid black;
@@ -200,6 +204,9 @@ float: left;
 background-color: rgba(255, 255, 255, 0.3);
   padding-top: 0;);
   border-radius: 10px;
+border: 2px solid black;
+float: right;
+background-color: rgba(255, 255, 255, 0.5);
 }
 
 .center {
