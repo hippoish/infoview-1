@@ -5,7 +5,25 @@
 </head>
 <body>
   <% include ../partials/nav %>
-  <% include ../partials/form %>
+  <button type="button" class="btn link" data-toggle="modal" data-target="#myModal">
+    [Share your experience]
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+          <% include ../partials/form %>
+
+        </div>
+      </div>
+    </div>
+  </div>
   <%# <center>
     <img src="images/karatekid.png" style='image-size:70%;'>
   </center>%>
