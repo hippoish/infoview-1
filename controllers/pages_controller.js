@@ -1,9 +1,10 @@
-var Post = require('../models/Post')
+var Post = require('../models/post')
 
 module.exports = {
   landing: home,
   about: about,
-  dashboard: dashboard
+  dashboard: dashboard,
+  chat: chat
 }
 
 // action to render the home page
@@ -22,4 +23,8 @@ function about(req, res, next) {
 // action to render the dashboard with posts list
 function dashboard(req, res, next) {
   res.render('pages/dashboard', {current_user: global.user});
+};
+
+function chat(req, res, next) {
+  res.render('chat', {current_user: global.user});
 };

@@ -15,13 +15,56 @@ function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '<br><button type="button" class="link" data-toggle="modal" data-target="#showModal"> View for more info</button><span class="remove-post" style="float:right;">Delete</span></li>'
-  );
+  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=changePost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button><span class="remove-post link" style="float:right;">Delete</span></li>'
+  )
+
+  // createModalHTML(post);
+
+  // $('#button-post-' + post._id).on('click', function(){
+  //   console.log('what upppp')
+  //   $('#show-post-span').replaceWith('<% post = jsonPost %>')
+  // })
+
 }
+
+function changePost(post){
+  console.log('what upppp')
+  console.log('post id is: ' + post)
+  // $('#show-post-span').html('<% var post = post %>')
+  $.ajax({
+    method: 'GET',
+    url: 'api/posts/' + encodeURIComponent(post),
+  }).then(
+    function(jsonPost) {
+      $('.modal-body').empty();
+      $('.modal-body').append(
+        '<div>company: ' + jsonPost.company + '</div>' +
+        '<div>Interviewed or Upcoming Interview : ' + jsonPost.interviewed + '</div>' +
+        '<div>(if interviewed) How was your experience? : ' + jsonPost.positive_exp + '</div>' +
+        '<div>Interview details: ' + jsonPost.content + '</div>' +
+        '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div>'
+      )
+    }
+  )
+}
+
+// get a single post in json using ajax
+// $('.show-post').on('click', function(e) {
+//   console.log('clikced')
+//   $.ajax({
+//     method: 'GET',
+//     url: 'api/posts/:id' + encodeURIComponent(id),
+//     data: jsonPost
+//   }).then(
+//     function(jsonPost) {
+//       createModalHTML(jsonPost)
+//     }
+//   )
+// })
 
 //function to dynamically create a modal representing the show page for each post
 function createModalHTML(post){
-  '<div class="modal fade" id="showModal post-' + post._id +
+  $('body').modal('<div class="show-post modal fade" id="post-' + post._id +
   '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
   '<div class="modal-dialog" role="document">' +
       '<div class="modal-content">' +
@@ -43,7 +86,7 @@ function createModalHTML(post){
         '</div>' +
       '</div>' +
     '</div>' +
-  '</div>'
+  '</div>')
 }
 
 /////////////////////////////////////////////////
@@ -120,7 +163,6 @@ $(document).ready(function() {
       jsonPosts.forEach(function(jsonPost) {
         // convert to html
         var postHTML = createPostHTML(jsonPost);
-          console.log(postHTML);
         // check if post is a completed interview and make it the correct color
         if (jsonPost.interviewed) {
           $senseiPosts.append(postHTML);
@@ -194,12 +236,16 @@ $(document).ready(function() {
 
   })
 
+
+
+
 // Attach event handlers through delegation.
  // When a selector is provided(as the second argument, i.e. ":checkbox" or ".remove-item"), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
- $senseiPosts.on("click", ":checkbox", updateHandler);
- $grasshopperPosts.on("click", ":checkbox", updateHandler);
+ // $senseiPosts.on("click", ":checkbox", updateHandler);
+ // $grasshopperPosts.on("click", ":checkbox", updateHandler);
+ // $senseiPosts.on("click", ".show-post", createModalHTML);
+ // $grasshopperPosts.on("click", ".show-post", createModalHTML);
  $senseiPosts.on("click", ".remove-post", deleteHandler);
  $grasshopperPosts.on("click", ".remove-post", deleteHandler);
-
 
 });
