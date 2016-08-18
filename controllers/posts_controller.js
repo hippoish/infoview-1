@@ -1,4 +1,4 @@
-var Post = require('../models/Post');
+var Post = require('../models/post');
 
 module.exports = {
   index:   index,
@@ -30,7 +30,7 @@ function create(req, res, next) {
   newPost.interviewed  = req.body.interviewed;
   newPost.positive_exp = req.body.positive_exp;
   newPost.bonus_tips   = req.body.bonus_tips;
-  
+
 
   newPost.save(function(err, savedPost) {
     if (err) next(err);
