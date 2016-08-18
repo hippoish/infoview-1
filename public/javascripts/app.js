@@ -1,4 +1,5 @@
 console.log('app.js loaded');
+// var mongoose = require('../database');
 // globally define jquery variables to be used later
 var $senseiPosts;
 var $grasshopperPosts;
@@ -47,9 +48,9 @@ function changePost(post){
     url: 'api/posts/' + encodeURIComponent(post),
   }).then(
     function(jsonPost) {
+      // $postUserPic = User.findById(jsonPost.user).linkedin.pictureUrl;
       $('.modal-body').empty();
-      $('.modal-body').append(
-        '<div>company: ' + jsonPost.company + '</div>' +
+      $('.modal-body').append('<div>company: ' + jsonPost.company + '</div>' +
         '<div>Interviewed or Upcoming Interview : ' + jsonPost.interviewed + '</div>' +
         '<div>(if interviewed) How was your experience? : ' + jsonPost.positive_exp + '</div>' +
         '<div>Interview details: ' + jsonPost.content + '</div>' +
@@ -57,47 +58,6 @@ function changePost(post){
       )
     }
   )
-}
-
-// get a single post in json using ajax
-// $('.show-post').on('click', function(e) {
-//   console.log('clikced')
-//   $.ajax({
-//     method: 'GET',
-//     url: 'api/posts/:id' + encodeURIComponent(id),
-//     data: jsonPost
-//   }).then(
-//     function(jsonPost) {
-//       createModalHTML(jsonPost)
-//     }
-//   )
-// })
-
-//function to dynamically create a modal representing the show page for each post
-function createModalHTML(post){
-  $('body').modal('<div class="show-post modal fade" id="post-' + post._id +
-  '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">' +
-  '<div class="modal-dialog" role="document">' +
-      '<div class="modal-content">' +
-        '<div class="modal-header">' +
-          '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
-          '</button>' +
-          '<h4 class="modal-title" id="myModalLabel">User Name</h4>' +
-        '</div>' +
-        '<div class="modal-body">' +
-        '<h5 class="modal-title" id="myModalLabel">' + post.interviewed + '</h5>' +
-        '<h5 class="modal-title" id="myModalLabel">' + post.company + '</h5>' +
-        '<h5 class="modal-title" id="myModalLabel">' + post.content + '</h5>' +
-        '<h5 class="modal-title" id="myModalLabel">User Name</h5>' +
-        '</div>' +
-        '<div class="modal-footer">' +
-          '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-          '<button type="button" class="btn btn-primary">Save changes</button>' +
-        '</div>' +
-      '</div>' +
-    '</div>' +
-  '</div>')
 }
 
 /////////////////////////////////////////////////
