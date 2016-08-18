@@ -3,6 +3,7 @@ var Post = require('../models/post');
 module.exports = {
   index:   index,
   create:  create,
+  show: show,
   // update:  update,
   destroy: destroy
 }
@@ -23,7 +24,7 @@ function index(req, res, next) {
 
 function create(req, res, next) {
   console.log('user, Bobble', req.body);
-  var newPost          = new Post(req.body);
+  var newPost = new Post(req.body);
   console.log(newPost);
 
   newPost.save(function(err, savedPost) {
@@ -33,6 +34,15 @@ function create(req, res, next) {
   });
 }
 
+function show(req, res, next) {
+  var post = Post.findById(req.params.id, function(err, post) {
+    if (err || !post) {
+      next (err)
+    } else {
+      res.json(post)
+    }
+  })
+}
 // function update(req, res, next) {
 //   var id = req.params.id;
 //   console.log('Show bootsy that body, bebe!!!', id, req.body);
