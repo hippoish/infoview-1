@@ -6,7 +6,21 @@
 
   <body>
     <% include ../partials/nav %>
-    <% include ../partials/show_post %>
+
+    <span id='show-post-span'><% var post = 1 %></span>
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <% include ../partials/show_post %>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- button for new post modal-->
     <button type="button" class="btn link" data-toggle="modal" data-target="#myModal">
@@ -73,8 +87,7 @@
         </div>
       </div>
     </div>
-
+    <div class="hidden-id" id="<%= user? user._id : '' %>"></div>
     <% include ../partials/scripts %>
-
   </body>
 </html>
