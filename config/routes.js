@@ -23,6 +23,7 @@ router.route('/api/posts')
 
 // deleting posts from API
 router.route('/api/posts/:id')
+  .get(postsController.show)
   .delete(postsController.destroy);
 
 ////////////////////////////////////////////
