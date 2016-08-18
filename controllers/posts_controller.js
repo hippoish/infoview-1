@@ -1,4 +1,4 @@
-var Post = require('../models/Post');
+var Post = require('../models/post');
 
 module.exports = {
   index:   index,

@@ -12,9 +12,20 @@ router.route('/')
 // about path:
 router.route('/about')
   .get(pagesController.about);
+
 // dashboard path:
 router.route('/dashboard')
   .get(pagesController.dashboard);
+
+
+
+//chat path;
+ router.route('/chat')
+   .get(pagesController.chat);
+
+// app.get ('/chat', function(req, res){
+//   res.sendFile(__dirname + '/index.ejs');
+// });
 
 // API for posts
 router.route('/api/posts')
