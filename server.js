@@ -54,6 +54,12 @@ app.get ('/chat', function(req, res){
   res.sendFile(__dirname + 'pages/chat');
 });
 
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    console.log('message: ' +  msg);
+  });
+});
+
 
 
 /////////// ERROR HANDLERS /////////////
