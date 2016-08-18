@@ -28,7 +28,7 @@ function create(req, res, next) {
   console.log(newPost);
 
   newPost.save(function(err, savedPost) {
-    if (err) next(err);
+    if (err) console.log(err);
 
     res.json(savedPost);
   });
