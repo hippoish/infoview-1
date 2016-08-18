@@ -78,7 +78,7 @@
 </div>
 
 <div class='modal-footer'>
-  <input type='hidden' id='post-user' name='user' value='<% if (user) {user._id} %>'>
+  <input type='hidden' id='post-user' name='user' value='<%if(user){%><%=user._id%><%}%>'>
   <button type="button" class="btn btn-secondary" data-dismiss='modal'>Close</button>
   <button type='submit' class='btn btn-danger'>Submit</button>
 
