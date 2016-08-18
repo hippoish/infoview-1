@@ -7,7 +7,7 @@
   <body>
     <% include ../partials/nav %>
     <% include ../partials/show_post %>
-    
+
     <!-- button for new post modal-->
     <button type="button" class="btn link" data-toggle="modal" data-target="#myModal">
       [Share your experience]
@@ -29,9 +29,7 @@
         </div>
       </div>
     </div>
-    <%# <center>
-      <img src="images/karatekid.png" style='image-size:70%;'>
-    </center>%>
+
 
     <div class="row">
 
@@ -39,11 +37,14 @@
 
         <div class="one-half column col-md-6">
 
-          <h4 class='custom-font'>Sensei</h4>
 
-          <p>Share your experience with grasshoppers facing upcoming interviews.</p>
+          <article class="postList posts-column">
 
-          <article class="my-life posts-column">
+            <h4 class='custom-font'>Sensei</h4>
+
+            <p>Share your experience with grasshoppers facing upcoming interviews.</p>
+
+            <hr style="margin: 5%;">
 
             <ul class="posts-list list-group" id="sensei-posts">
               <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
@@ -55,11 +56,13 @@
 
         <div class="one-half column  col-md-6">
 
-          <h4 class="custom-font">Grasshoppers</h4>
 
-          <p>Post if you are looking for interview advice from wise Senseis.</p>
+          <article class="postList posts-column">
+            <h4 class="custom-font">Grasshoppers</h4>
 
-          <article class="choices posts-column">
+            <p>Post if you are looking for interview advice from wise Senseis.</p>
+
+            <hr style="margin: 5%;">
 
             <ul class="posts-list group-list" id="grasshopper-posts">
               <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
