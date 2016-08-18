@@ -22,15 +22,9 @@ function index(req, res, next) {
 };
 
 function create(req, res, next) {
-  console.log('user, Bobble', req.user);
-
-  var newPost          = new Post();
-  newPost.company      = req.body.company;
-  newPost.content      = req.body.content;
-  newPost.interviewed  = req.body.interviewed;
-  newPost.positive_exp = req.body.positive_exp;
-  newPost.bonus_tips   = req.body.bonus_tips;
-
+  console.log('user, Bobble', req.body);
+  var newPost          = new Post(req.body);
+  console.log(newPost);
 
   newPost.save(function(err, savedPost) {
     if (err) next(err);

@@ -1,12 +1,8 @@
 <!-- BEGIN OF NEW POST FORM -->
-
-
-        <h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
-      </div>
-
-      <div class="modal-body">
-
-        <form class='new-post' id='new-post'>
+<h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
+  </div>
+    <div class="modal-body">
+      <form class='new-post' id='new-post'>
 
           <!-- BEGIN COMPANY NAME -->
           <div class='form-group'>
@@ -63,12 +59,6 @@
                  Negative
                </label>
              </div>
-             <%# <div class='radio disabled'>
-               <label>
-                 <input type='radio' name='optionsRadios2' id='optionsRadios5' value='' >
-                 Neutral
-               </label>
-             </div>%>
            </fieldset>
 
         <!-- END OF OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
@@ -83,13 +73,12 @@
 
           <!-- END BONUS TIPS FIELD -->
         <!-- BEGIN SUBMIT BUTTON -->
-<%#
-           <button type='submit' class='btn btn-danger'>Submit</button>%>
+
   </form>
 </div>
 
 <div class='modal-footer'>
-  <input type='hidden' name='user' value=<% user %>>
+  <input type='hidden' id='post-user' name='user' value='<%= user._id %>'>
   <button type="button" class="btn btn-secondary" data-dismiss='modal'>Close</button>
   <button type='submit' class='btn btn-danger'>Submit</button>
 
