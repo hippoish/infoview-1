@@ -107,7 +107,7 @@ $(document).ready(function() {
   $senseiPosts      = $('#sensei-posts');
   $grasshopperPosts = $('#grasshopper-posts');
   $form             = $('#new-post');
-  $postUser         = user;
+  $postUser         = $('#post-user');
 
   //get all posts json using ajax
   $.ajax({
@@ -141,8 +141,7 @@ $(document).ready(function() {
     $posExp           = $('input[name=optionsRadios2]:checked');
     $bonusTips        = $('#post-bonusTips');
     $postContent      = $('#post-content');
-    $postUser         = $('#post-user');
-    console.log('post user is: ')
+    console.log('post user is: ', $postUser)
 
     // create the new post from the values of the form fields
     var newPost = {
@@ -150,8 +149,8 @@ $(document).ready(function() {
       content      : $postContent.val(),
       interviewed  : $interviewed.val(),
       positive_exp : $posExp.val(),
-      bonus_tips   : $postBonusTips.val(),
-      user         : $postUser.val()
+      bonus_tips   : $bonusTips.val(),
+      postedBy     : $postUser.val()
     }
 
     console.log(newPost)
@@ -169,7 +168,7 @@ $(document).ready(function() {
         $postContent.val('');
         $interviewed.val('');
         $posExp.val('');
-        $postBonusTips.val('');
+        $bonusTips.val('');
         // return new post as json
         return jsonPost;
       },
@@ -195,27 +194,6 @@ $(document).ready(function() {
 
   })
 
-
-  // $.ajax({
-  //   method: 'GET',
-  //   url: '/api/posts'
-  // }).then(
-  //   // pass it what the ajax req came back with
-  //   function listPosts(jsonPosts) {
-  //     // iterate through our array of posts
-  //     jsonPosts.forEach(function(jsonPost) {
-  //       // convert to html
-  //       var postHTML = createPostHTML(jsonPost);
-  //         console.log(postHTML);
-  //       // check if post is a completed interview and make it the correct color
-  //       if (jsonPost.interviewed) {
-  //         $senseiPosts.append(postHTML);
-  //       } else {
-  //         $grasshopperPosts.append(postHTML);
-  //       }
-  //     })
-  //   }
-  // )
 // Attach event handlers through delegation.
  // When a selector is provided(as the second argument, i.e. ":checkbox" or ".remove-item"), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
  $senseiPosts.on("click", ":checkbox", updateHandler);
