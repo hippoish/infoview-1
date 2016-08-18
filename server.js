@@ -11,7 +11,6 @@ require('dotenv').config()
 var routes = require('./config/routes');
 var mongoose = require('./config/database');
 var passport = require('./config/passport');
-
 var app = express();
 
 // view engine setup
