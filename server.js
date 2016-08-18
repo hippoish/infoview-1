@@ -1,4 +1,6 @@
 var express = require('express');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -11,7 +13,7 @@ require('dotenv').config()
 var routes = require('./config/routes');
 var mongoose = require('./config/database');
 var passport = require('./config/passport');
-
+var io = require('./io')
 var app = express();
 
 // view engine setup
@@ -46,6 +48,13 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', routes);
+
+//chat
+app.get ('/chat', function(req, res){
+  res.sendFile(__dirname + 'pages/chat');
+});
+
+
 
 /////////// ERROR HANDLERS /////////////
 
