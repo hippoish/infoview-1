@@ -9,14 +9,16 @@ var $posExp;
 var $bonusTips;
 var $postContent;
 var $postUser;
+var currentUserId;
 
 // fcn to dynamically create an html representation of the json returned from the json, including view more and delete buttons
 function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=changePost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button><span class="remove-post link" style="float:right;">Delete</span></li>'
+  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=changePost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
   )
+
 
   // createModalHTML(post);
 
@@ -25,6 +27,15 @@ function createPostHTML(post) {
   //   $('#show-post-span').replaceWith('<% post = jsonPost %>')
   // })
 
+}
+
+function addDeleteButton(post) {
+  currentUserId = $('.hidden-id').attr('id');
+  if (post.postedBy == currentUserId) {
+    return '<span class="remove-post link" style="float:right;">Delete</span>';
+  } else {
+    return '';
+  }
 }
 
 function changePost(post){
@@ -42,7 +53,7 @@ function changePost(post){
         '<div>Interviewed or Upcoming Interview : ' + jsonPost.interviewed + '</div>' +
         '<div>(if interviewed) How was your experience? : ' + jsonPost.positive_exp + '</div>' +
         '<div>Interview details: ' + jsonPost.content + '</div>' +
-        '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div>' 
+        '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div>'
       )
     }
   )
@@ -150,7 +161,7 @@ $(document).ready(function() {
   $senseiPosts      = $('#sensei-posts');
   $grasshopperPosts = $('#grasshopper-posts');
   $form             = $('#new-post');
-  $postUser         = $('#post-user');
+
 
   //get all posts json using ajax
   $.ajax({
@@ -183,7 +194,8 @@ $(document).ready(function() {
     $posExp           = $('input[name=optionsRadios2]:checked');
     $bonusTips        = $('#post-bonusTips');
     $postContent      = $('#post-content');
-    console.log('post user is: ', $postUser)
+    $postUser         = $('#post-user');
+    console.log('post user is: ', $postUser.val());
 
     // create the new post from the values of the form fields
     var newPost = {
