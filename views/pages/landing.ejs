@@ -10,7 +10,23 @@
     <h1 class='titleName center'><%= title %></h1>
 
 
-	    <a href='/auth/linkedin'><img class='center' alt='Linkedin' src='/images/Sign-in-Default.png' ></a>
+	    <a href='/auth/linkedin'>
+        <% if (user) { %>
+          <li>
+            <a href='#'>Hello, <%= user.linkedin.firstName %>!</a>
+          </li>
+          <li>
+            <a href='/logout'>Logout</a>
+          </li>
+        <% } else { %>
+          <li>
+            <a href='/auth/linkedin'><img class='center' alt='Linkedin' src='/images/Sign-in-Default.png' ></a>
+          </li>
+        <% } %>
+        <img class='center' alt='Linkedin' src='/images/Sign-in-Default.png' >
+
+
+      </a>
       <div class="row">
 
         <div class="about-us-line"><span class='about'>about us</span></div>
