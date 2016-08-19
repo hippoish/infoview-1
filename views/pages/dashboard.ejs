@@ -50,6 +50,7 @@
 
     </div>
 
+
     <div class='row'>
 
       <div class='container posts-content'>
@@ -59,17 +60,30 @@
 
           <article class='postList posts-column'>
 
-            <h4 class='custom-font'>Sensei</h4>
 
+            <h4 class='custom-font'>Sensei</h4>
             <p>Share your experience with grasshoppers facing upcoming interviews.</p>
+            <hr style="margin: 5%;">
+            <ul class="posts-list list-group" id="sensei-posts">
+              <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
 
             <hr style='margin: 5%;'>
 
             <ul class='posts-list list-group' id='sensei-posts'>
               <!-- THIS IS WHERE THE POSTS RELATED TO PAST INTERVIEWS WILL APPEND -->
-            </ul>
 
+            </ul>
           </article>
+
+        <%# </div>%>
+        <%# <div class="one-half column  col-md-6">%>
+          <article class="postList posts-column pre-scrollable">
+            <h4 class="custom-font">Grasshoppers</h4>
+            <p>Post if you are looking for interview advice from wise Senseis.</p>
+            <hr style="margin: 5%;">
+            <ul class="posts-list group-list" id="grasshopper-posts">
+              <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
+
 
         </div>
 
@@ -85,9 +99,11 @@
 
             <ul class='posts-list group-list' id='grasshopper-posts'>
               <!-- THIS IS WHERE THE POSTS RELATED TO UPCOMING INTERVIEWS WILL APPEND -->
-            </ul>
 
+            </ul>
           </article>
+
+
 
         </div>
 
@@ -95,7 +111,7 @@
 
     </div>
 
-    <!-- hidden div to make it so the back end can pull the id of the current user! Mike is awesome --> 
+    <!-- hidden div to make it so the back end can pull the id of the current user! Mike is awesome -->
     <div class='hidden-id' id='<%= user? user._id : '' %>'>
     </div>
 
