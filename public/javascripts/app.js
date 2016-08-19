@@ -21,10 +21,12 @@ function createPostHTML(post) {
   )
 }
 
+// create an HTML version of a reply
 function createReplyHTML(reply) {
   return $('<div class="reply-user"><h5>Reply from ' + reply.postedBy.linkedin.firstName + '</h5><img src="' + reply.postedBy.linkedin.pictureUrl + '" width="10%"></div><p>' + reply.text + '</p>')
 }
 
+// go through a post's replies and append them all under the post
 function listReplies(post) {
   post.replies.forEach(function(reply) {
     var replyHTML = createReplyHTML(reply);
@@ -32,6 +34,7 @@ function listReplies(post) {
   })
 }
 
+// append a delete button to all posts created by the current user
 function addDeleteButton(post) {
   $currentUserId = $('.hidden-id').attr('id');
   if (post.postedBy == $currentUserId) {
@@ -42,9 +45,7 @@ function addDeleteButton(post) {
 }
 
 function showPost(post){
-  console.log('what upppp')
-  console.log('post id is: ' + post)
-  // $('#show-post-span').html('<% var post = post %>')
+  // get a single post from the API
   $.ajax({
     method: 'GET',
     url: 'api/posts/' + encodeURIComponent(post)
@@ -68,6 +69,7 @@ function showPost(post){
           '<div>Interview details: ' + jsonPost.content + '</div>' +
           '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div><hr><div id="post-replies"><h6>Replies</h6></div>'
         );
+        // list all the replies for this post
         listReplies(jsonPost);
       })
 
@@ -87,6 +89,7 @@ function addReply(postId) {
     function(jsonPost) {
       var replyHTML = createReplyHTML(jsonPost.replies[jsonPost.replies.length-1]);
       $('#post-replies').append(replyHTML);
+      $('#reply-content').val('');
     }
   )
 }
