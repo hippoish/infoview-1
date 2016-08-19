@@ -17,17 +17,20 @@ function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=changePost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
+  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=showPost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
   )
+}
 
+function createReplyHTML(reply) {
 
-  // createModalHTML(post);
+  return $('<div class="reply-user"><h6>Reply from ' + reply.postedBy.linkedin.firstName + '</h6><img src="' + reply.postedBy.linkedin.pictureUrl + '" width="10%"></div><p>' + reply.text + '</p>')
+}
 
-  // $('#button-post-' + post._id).on('click', function(){
-  //   console.log('what upppp')
-  //   $('#show-post-span').replaceWith('<% post = jsonPost %>')
-  // })
-
+function listReplies(post) {
+  post.replies.forEach(function(reply) {
+    var replyHTML = createReplyHTML(reply);
+    $('#post-replies').append(replyHTML);
+  })
 }
 
 function addDeleteButton(post) {
@@ -39,26 +42,56 @@ function addDeleteButton(post) {
   }
 }
 
-function changePost(post){
+function showPost(post){
   console.log('what upppp')
   console.log('post id is: ' + post)
   // $('#show-post-span').html('<% var post = post %>')
   $.ajax({
     method: 'GET',
-    url: 'api/posts/' + encodeURIComponent(post),
+    url: 'api/posts/' + encodeURIComponent(post)
   }).then(
     function(jsonPost) {
-      // $postUserPic = User.findById(jsonPost.user).linkedin.pictureUrl;
-      $('.modal-body').empty();
-      $('.modal-body').append('<div>company: ' + jsonPost.company + '</div>' +
-        '<div>Interviewed or Upcoming Interview : ' + jsonPost.interviewed + '</div>' +
-        '<div>(if interviewed) How was your experience? : ' + jsonPost.positive_exp + '</div>' +
-        '<div>Interview details: ' + jsonPost.content + '</div>' +
-        '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div>'
-      )
+      console.log(jsonPost)
+      var user = jsonPost.postedBy
+      $.ajax({
+        method: 'GET',
+        url: 'api/users/' + user
+      }).then(
+        function(jsonUser) {
+        $('#showModal .modal-content').attr('id', jsonPost._id)
+        $('.modal-title').empty();
+        // $('.modal-content').eq(0).attr('id') = jsonPost._id;
+        $('#showModal .modal-title').append('<p>Post by:</p><h3><a href="' + jsonUser.linkedin.profileUrl + '" target="_blank">' + jsonUser.linkedin.firstName + ' ' + jsonUser.linkedin.lastName + '</a></h3><img src="' + jsonUser.linkedin.pictureUrl + '">');
+        $('.modal-post-details').empty();
+        $('.modal-post-details').append('<div>company: ' + jsonPost.company + '</div>' +
+          '<div>Interviewed or Upcoming Interview : ' + jsonPost.interviewed + '</div>' +
+          '<div>(if interviewed) How was your experience? : ' + jsonPost.positive_exp + '</div>' +
+          '<div>Interview details: ' + jsonPost.content + '</div>' +
+          '<div>Bonus Tips: ' + jsonPost.bonus_tips + '</div><hr><div id="post-replies"><h6>Replies</h6></div>'
+        );
+        listReplies(jsonPost);
+      })
+
     }
   )
 }
+
+function addReply(postId) {
+  $.ajax({
+    method: 'PATCH',
+    url: 'api/posts/' + encodeURIComponent(postId),
+    data: {
+      text: $('#reply-content').val(),
+      postedBy: $('#reply-user').val()
+    }
+  }).then(
+    function(jsonPost) {
+      var replyHTML = createReplyHTML(jsonPost.replies[jsonPost.replies.length-1]);
+      $('#post-replies').append(replyHTML);
+    }
+  )
+}
+
 
 /////////////////////////////////////////////////
 //////////////GET BY ID AND DELETE///////////////
@@ -77,8 +110,8 @@ function updateHandler(e) {
   var id   = getId(html);
   // User AJAX to update the todo in our db
   $.ajax({
-    type: "PATCH",
-    url: "/api/posts" + encodeURIComponent(id),
+    type: 'PATCH',
+    url: '/api/posts/' + encodeURIComponent(id),
     data: {} // Since we are only allowing the basic update of changing the todo completed status, I am skipping properly putting together the data of the todo because we will not need it in this special use case.
   }).then(
     function(jsonPost) {
@@ -98,15 +131,15 @@ function updateHandler(e) {
 
 // Define function that will get executed when the X is clicked on.
 function deleteHandler(e) {
-  console.log("deleteHandler enabled")
+  console.log('deleteHandler enabled')
   // Grab the parent li of the span
   var html = $(this).parent();
   // Get the id of the todo we are deleting
   var id = getId(html);
   // Use AJAX to delete the todo from our db
   $.ajax({
-    type: "DELETE",
-    url: "/api/posts/" + encodeURIComponent(id)
+    type: 'DELETE',
+    url: '/api/posts/' + encodeURIComponent(id)
   }).then(
     // Use jquery to remove it from the DOM
     function(jsonPost) {
@@ -212,12 +245,15 @@ $(document).ready(function() {
 
 
 // Attach event handlers through delegation.
- // When a selector is provided(as the second argument, i.e. ":checkbox" or ".remove-item"), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
- // $senseiPosts.on("click", ":checkbox", updateHandler);
- // $grasshopperPosts.on("click", ":checkbox", updateHandler);
- // $senseiPosts.on("click", ".show-post", createModalHTML);
- // $grasshopperPosts.on("click", ".show-post", createModalHTML);
- $senseiPosts.on("click", ".remove-post", deleteHandler);
- $grasshopperPosts.on("click", ".remove-post", deleteHandler);
-
+ // When a selector is provided(as the second argument, i.e. ':checkbox' or '.remove-item'), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
+ // $senseiPosts.on('click', ':checkbox', updateHandler);
+ // $grasshopperPosts.on('click', ':checkbox', updateHandler);
+ // $senseiPosts.on('click', '.show-post', createModalHTML);
+ // $grasshopperPosts.on('click', '.show-post', createModalHTML);
+ $senseiPosts.on('click', '.remove-post', deleteHandler);
+ $grasshopperPosts.on('click', '.remove-post', deleteHandler);
+ $('#submit-reply').on('click', function(e) {
+   e.preventDefault();
+   addReply($(this).parent().parent().parent().attr('id'));
+ })
 });
