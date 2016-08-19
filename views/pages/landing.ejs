@@ -3,44 +3,199 @@
   <head>
     <% include ../partials/head %>
   </head>
+
   <body>
-    <div class=content>
-    <div class='container sign-in'>
-    <h1 class='titleName center'><%= title %></h1>
+
+  		<!-- Wrap it all up -->
+  			<div id='wrapper'>
+
+  				<!-- Header -->
+  					<header id='header' class='alt'>
+  						<span class='logo'><img src='images/logo.png' alt='' /></span>
+  						<p>Interviews are stressful. But what if you had a cheat sheet of sorts, like a Sensei who could mold a young grasshopper to become a class a Interview Ninja. Enter the InfoView dojo! Ask someone at a specific company what their interview process was like, tips on what to brush up on, what to wear, or the best parts of working for that company.</p>
+
+              <% if (user) { %>
+                <p>
+                  Hello, <%= user.linkedin.firstName %>!
+                </p>
+                <p>
+                  <a href='/logout'>Logout</a>
+                </p>
+              <% } else { %>
+                <p>
+                  <a href='/auth/linkedin'><img class='center' alt='Linkedin' src='/images/Sign-in-Default.png' ></a>
+                </p>
+              <% } %>
+
+  					</header>
+
+  				<!-- Nav -->
+  					<nav id='nav'>
+  						<ul>
+  							<li><a href='#intro' class='active'>About Us</a></li>
+  							<li><a href='#first'>InfoBoard</a></li>
+  							<li><a href='#second'>Chat</a></li>
+  							<li><a href='#cta'>Contact Us</a></li>
+  						</ul>
+  					</nav>
+
+  				<!-- Main -->
+  					<div id='main'>
+
+  						<!-- About Us -->
+  							<section id='intro' class='main'>
+  								<div class='spotlight'>
+  									<div class='content'>
+  										<header class='major'>
+  											<h2>What is Infoview?</h2>
+  										</header>
+  										<p><b>ABOUT OUR DOJO</b><br> Interviews are stressful. But what if you had a cheat sheet of sorts, like a Sensei who could mold a young grasshopper to become a class a Interview Ninja Warrior? Enter the InfoView dojo! Ask your Sensei what you need training in, so you can easily defend yourself against the evil whiteboard of death!</p>
+  										<ul class='actions'>
+  											<!-- INSERT LOGIN FEATURE HERE -->
+  										</ul>
+  									</div>
+  									<span class='image'><img src='images/pic01.jpg' alt='' /></span>
+  								</div>
+  							</section>
+
+  						<!-- InfoBoard -->
+  							<section id='first' class='main special'>
+                  <header class='major'>
+  									<h2>Share your experiences</h2>
+
+                    <!-- Modal for show post -->
+                    <span id='show-post-span'><% var post = 1 %></span>
+                    <div class='modal fade' id='showModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog' role='document'>
+                        <div class='modal-content'>
+                          <div class='modal-header'>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                            </button>
+                            <% include ../partials/show_post %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- button for new post modal-->
+                    <button type='button' style="margin-bottom:2%" class='btn link' data-toggle='modal' data-target='#myModal'>
+                      Share your experience
+                    </button>
+
+                    <!-- Formfield Modal -->
+                    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+                      <div class='modal-dialog' role='document'>
+                        <div class='modal-content'>
+                          <div class='modal-header'>
+
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                            </button>
+
+                            <% include ../partials/form %>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Two Columns -->
+                    <div class='row'>
+                          <article class='postList posts-column'>
+                            <b>
+                              <h3 class='custom-font'>Sensei</h3>
+                              <h4>Share your past interview experience</h4>
+                            </b>
+                            <hr style='margin: 5%;'>
+                            <ul class='posts-list list-group pre-scrollable' id='sensei-posts'>
+                              <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
+                            </ul>
+                          </article>
+                          <article class='postList posts-column'>
+                            <b>
+                              <h3 class='custom-font'>Grasshopper</h3>
+                              <h4>Ask for interview advice</h4>
+                            </b>
+                            <hr style='margin: 5%;'>
+                            <ul class='posts-list list-group pre-scrollable' id='grasshopper-posts'>
+                              <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
+                            </ul>
+                          </article>
+                    </div>
+  								</header>
+  							</section>
+
+  						<!-- Chat -->
+  							<section id='second' class='main special'>
+                  <header class='major'>
+                    <h2>Chat with others online</h2>
+                  </header>
+                    <!-- INSERT CHAT FEATURE HERE -->
+                    <style>
+                    * {
+                      margin: 3%;
+                    }
+                    form input {
+                      background: #fcfcfc;
+                      padding: 10px;
+                      margin-top: 2%;
+                      width: 90%;
+                      margin-right: .5%;
+                      box-sizing: border-box;
+                    }
+                    form button {
+                      width: 9%;
+                      border: none;
+                      margin: 10px;
+                    }
+                    #messages {
+                      list-style-type: none;
+                      margin: 0;
+                      padding: 0;
+                    }
+                    #messages li {
+                      padding: 5px 10px;
+                    }
+                    #chatbox {
+                      width: 50%;
+                      padding-right: 2%;
+                      text-align: center;
+                    }
+                    </style>
+                    <center>
+                    <div id='chatbox' class='pre-scrollable'>
+                        Name: <input type='text' id='name'>
+                        <ul id='messages'></ul>
+                        <form action=''>
+                          <input autocomplete='off' id='msg' placeholder='Chat with others online'/><button>Send</button>
+                        </form>
+                    </div>
+                  </center>
+  							</section>
+
+  						<!-- Contact Us -->
+  							<section id='cta' class='main special'>
+  								<header class='major'>
+  									<h2>Contact Us</h2>
+  										<p><a href='https://github.com/hippoish' class='icon fa-github alt'><span class='label'>Taylor's GitHub</span></a> Taylor Britton<br>
+  										<a href='https://github.com/diisles' class='icon fa-github alt'><span class='label'>David's GitHub</span></a> David Isles<br>
+  										<a href='https://github.com/desireedesario' class='icon fa-github alt'><span class='label'>Desi's GitHub</span></a> Desiree Desario</p>
+  								</section>
+  								</header>
+  							</section>
+
+  					</div>
+
+  				<!-- Footer -->
+  					<footer id='footer'>
+  						<p class='copyright'>&copy; InfoView</p>
+  					</footer>
+
+  			</div>
 
 
 
-	    <a href='/auth/linkedin'>
-
-        <img class='center' alt='Linkedin' src='/images/Sign-in-Default.png' >
-
-
-      </a>
-      <div class="row">
-
-        <div class="about-us-line"><span class='about'>about us</span></div>
-
-        <div class='about-description'>
-          <div class="descr-words">
-
-            <p>
-              Interviews are stressful. But what if you had a cheat sheet of sorts, like a Sensei who could mold a young grasshopper to become a class a Interview Ninja. Enter the InfoView dojo! Ask someone at a specific company what their interview process was like, tips on what to brush up on, what to wear, or the best parts of working for that company.
-
-
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <div class='container sign-in-picture'>
-
-
-    </div>
-  </div>
-</div>
-
-    </div> <!--container div -->
     <% include ../partials/footer %>
     <% include ../partials/scripts %>
   </body>
