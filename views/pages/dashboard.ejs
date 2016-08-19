@@ -46,46 +46,28 @@
 
 
     <div class="row">
-
-      <div class="container posts-content">
-
-        <div class="one-half column col-md-6">
-
-
-          <article class="postList posts-column">
-
+      <%# <div class="container posts-content">
+        <div class="one-half column col-md-6">%>
+          <article class="postList posts-column pre-scrollable">
             <h4 class='custom-font'>Sensei</h4>
-
             <p>Share your experience with grasshoppers facing upcoming interviews.</p>
-
             <hr style="margin: 5%;">
-
             <ul class="posts-list list-group" id="sensei-posts">
               <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
             </ul>
-
           </article>
-
-        </div>
-
-        <div class="one-half column  col-md-6">
-
-
-          <article class="postList posts-column">
+        <%# </div>%>
+        <%# <div class="one-half column  col-md-6">%>
+          <article class="postList posts-column pre-scrollable">
             <h4 class="custom-font">Grasshoppers</h4>
-
             <p>Post if you are looking for interview advice from wise Senseis.</p>
-
             <hr style="margin: 5%;">
-
             <ul class="posts-list group-list" id="grasshopper-posts">
               <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
             </ul>
-
           </article>
-
-        </div>
-      </div>
+        <%# </div>
+      </div>%>
     </div>
     <div class="hidden-id" id="<%= user? user._id : '' %>"></div>
     <% include ../partials/scripts %>
