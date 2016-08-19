@@ -22,7 +22,7 @@ $(document).ready(function() {
     $users.empty();
     console.log(clients);
     for (var prop in clients) {
-      $users.append('<li>' + clients[prop] + '</li>');
+      $users.append('<li style="list-style: none;">' + clients[prop] + '</li>');
     }
   })
 });

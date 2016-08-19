@@ -8,7 +8,7 @@ io.on('connection', function (socket) {
   socket.on('chat message', function(msg) {
     io.emit('new message', msg);
   })
-  
+
   socket.on('new person', function(name) {
     clientList[socket.client.id] = name;
     io.emit('update clients', clientList)
