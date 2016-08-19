@@ -6,10 +6,10 @@
 
   <body>
 
-  		<!-- Wrap it all up -->
-  			<div id='wrapper'>
+    <!-- Wrap it all up -->
+    <div id='wrapper'>
 
-  				<!-- Header -->
+      <!-- Header -->
   					<header id='header' class='alt'>
   						<span class='logo'><img src='images/logo.png' alt='' /></span>
   						<p>Interviews are stressful. But what if you had a cheat sheet of sorts, like a Sensei who could mold a young grasshopper to become a class a Interview Ninja. Enter the InfoView dojo! Ask someone at a specific company what their interview process was like, tips on what to brush up on, what to wear, or the best parts of working for that company.</p>
@@ -64,39 +64,25 @@
   									<h2>Share your experiences</h2>
 
                     <!-- Modal for show post -->
-                    <span id='show-post-span'><% var post = 1 %></span>
                     <div class='modal fade' id='showModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
                     <div class='modal-dialog' role='document'>
-                        <div class='modal-content'>
-                          <div class='modal-header'>
-                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                              <span aria-hidden='true'>&times;</span>
-                            </button>
+
                             <% include ../partials/show_post %>
                           </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <!-- button for new post modal-->
-                    <button type='button' style="margin-bottom:2%" class='btn link' data-toggle='modal' data-target='#myModal'>
-                      Share your experience
-                    </button>
 
-                    <!-- Formfield Modal -->
+                    <!-- button for new post -->
+                    <button type='button' style="margin-bottom:2%" class='btn link' data-toggle='modal' data-target='#myModal'>Share your experience</button>
+
+                    <!-- New Post Modal -->
                     <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
                       <div class='modal-dialog' role='document'>
-                        <div class='modal-content'>
-                          <div class='modal-header'>
 
-                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                              <span aria-hidden='true'>&times;</span>
-                            </button>
 
                             <% include ../partials/form %>
 
-                          </div>
-                        </div>
+
                       </div>
                     </div>
 

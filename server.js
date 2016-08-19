@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 // Load env variables from .env file
-require('dotenv').config()
+require('dotenv').config();
 
 var routes = require('./config/routes');
 var mongoose = require('./config/database');
@@ -17,14 +17,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.locals.title = "Infoview"
+app.locals.title = "Infoview";
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //cookie parser
@@ -41,7 +40,7 @@ app.use(passport.session());
 // This middleware will allow us to use the current user in the layout
 app.use(function (req, res, next) {
   global.user = req.user;
-  next()
+  next();
 });
 
 app.use('/', routes);

@@ -10,20 +10,19 @@ var $posExp;
 var $bonusTips;
 var $postContent;
 var $postUser;
-var currentUserId;
+var $currentUserId;
 
 // fcn to dynamically create an html representation of the json returned from the json, including view more and delete buttons
 function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=showPost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
+  + ' </strong></p><p> ' + post.content + '</p><button type="button" id="' + post._id + '" onClick=showPost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
   )
 }
 
 function createReplyHTML(reply) {
-
-  return $('<div class="reply-user"><h6>Reply from ' + reply.postedBy.linkedin.firstName + '</h6><img src="' + reply.postedBy.linkedin.pictureUrl + '" width="10%"></div><p>' + reply.text + '</p>')
+  return $('<div class="reply-user"><h5>Reply from ' + reply.postedBy.linkedin.firstName + '</h5><img src="' + reply.postedBy.linkedin.pictureUrl + '" width="10%"></div><p>' + reply.text + '</p>')
 }
 
 function listReplies(post) {
@@ -34,8 +33,8 @@ function listReplies(post) {
 }
 
 function addDeleteButton(post) {
-  currentUserId = $('.hidden-id').attr('id');
-  if (post.postedBy == currentUserId) {
+  $currentUserId = $('.hidden-id').attr('id');
+  if (post.postedBy == $currentUserId) {
     return '<span class="remove-post link" style="float:right;">Delete</span>';
   } else {
     return '';
@@ -102,33 +101,6 @@ function getId(jqueryThing) {
   return jqueryThing.attr('id').slice(5);
 }
 
-// Define function that will get executed when the checkbox is clicked
-function updateHandler(e) {
-  // Grab the parent li of the checkbox that triggered the event
-  var html = $(this).parent();
-  // Get the id of the todo we are updating
-  var id   = getId(html);
-  // User AJAX to update the todo in our db
-  $.ajax({
-    type: 'PATCH',
-    url: '/api/posts/' + encodeURIComponent(id),
-    data: {} // Since we are only allowing the basic update of changing the todo completed status, I am skipping properly putting together the data of the todo because we will not need it in this special use case.
-  }).then(
-    function(jsonPost) {
-      // Remove the old todo
-      html.remove();
-      // Create a new html snippet to represent the updated todo.
-      var postHTML = createPostHTML(jsonPost);
-      // Put the html for the updated todo in the appropriate column
-      // if(jsonTodo.completed) {
-      //   $personalTodo.append(todoHTML);
-      // } else {
-      //   $bootsyTodo.append(todoHTML);
-      // }
-    }
-  )
-}
-
 // Define function that will get executed when the X is clicked on.
 function deleteHandler(e) {
   console.log('deleteHandler enabled')
@@ -150,13 +122,12 @@ function deleteHandler(e) {
 
 // wait for the doucment to load before performing the following
 $(document).ready(function() {
-  // grab all needed DOM elements
+  // use jquery to grab DOM elements
   $senseiPosts      = $('#sensei-posts');
   $grasshopperPosts = $('#grasshopper-posts');
   $form             = $('#new-post');
 
-
-  //get all posts json using ajax
+  //get all posts in json using ajax
   $.ajax({
     method: 'GET',
     url: '/api/posts'
@@ -177,7 +148,7 @@ $(document).ready(function() {
     }
   )
 
-  // what to do when the form submit button is clicked
+  // what to do when submit button on the form is clicked
   $form.on('submit', function(e) {
     // stop the default behavior from clicking on the submit buttton
     e.preventDefault();
@@ -241,17 +212,12 @@ $(document).ready(function() {
 
   })
 
-
-
-
-// Attach event handlers through delegation.
+// Attach event listeners through delegation.
  // When a selector is provided(as the second argument, i.e. ':checkbox' or '.remove-item'), the event handler is referred to as delegated. The handler is not called when the event occurs directly on the bound element, but only for descendants (inner elements) that match the selector.
- // $senseiPosts.on('click', ':checkbox', updateHandler);
- // $grasshopperPosts.on('click', ':checkbox', updateHandler);
- // $senseiPosts.on('click', '.show-post', createModalHTML);
- // $grasshopperPosts.on('click', '.show-post', createModalHTML);
+ // delete post buttons
  $senseiPosts.on('click', '.remove-post', deleteHandler);
  $grasshopperPosts.on('click', '.remove-post', deleteHandler);
+ // submit reply button
  $('#submit-reply').on('click', function(e) {
    e.preventDefault();
    addReply($(this).parent().parent().parent().attr('id'));
