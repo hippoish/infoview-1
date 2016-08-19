@@ -1,91 +1,113 @@
-<!-- BEGIN OF NEW POST FORM -->
-<h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
+<!-- BEGIN NEW POST FORM -->
+<div class='modal-content'>
+  <div class='modal-header'>
+
+    <h4 class="modal-title" id="myModalLabel formField">Interview Details:<img src="images/ninjaman.png" alt="InfoView"></h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
   </div>
-    <div class="modal-body">
-      <form class='new-post' id='new-post'>
 
-          <!-- BEGIN COMPANY NAME -->
-          <div class='form-group'>
-            <label>Company Name</label>
-            <input class='form-control ' id='post-company' aria-describedby='emailHelp' placeholder='Enter company name'>
-            <small class='form-text text-muted'>This is what company your post is in reference to. </small>
-          </div>
-          <!-- END COMPANY NAME -->
+  <div class="modal-body">
+    <form class='new-post' id='new-post'>
 
-          <!-- BEGIN INERVIEWED OR ASKING FOR HELP -->
-          <fieldset class='form-group'>
-             <label for='optionsRadios1'>I have:</label>
-             <div class='radio'>
-               <label>
-                 <input type='radio' name='optionsRadios1' id='optionsRadios1' value=false checked>
-                 an upcoming interview with this company.
-               </label>
-             </div>
-             <div class='radio'>
-               <label>
-                 <input type='radio' name='optionsRadios1' id='optionsRadios1' value=true>
-                 interviewed with this company in the past.
-               </label>
-             </div>
-           </fieldset>
+      <!-- BEGIN COMPANY NAME -->
+      <div class='form-group'>
 
-          <!-- END INERVIEWED OR ASKING FOR HELP -->
+        <label>Company Name</label>
+        <small class='form-text text-muted'>This is what company your post is in reference to. </small>
 
-          <!-- BEGIN CONTENT FIELD -->
+        <input class='form-control ' id='post-company' aria-describedby='emailHelp' placeholder='Enter company name'>
 
-           <div class='form-group'>
-             <label for='exampleTextarea'>Interview details:</label>
-             <textarea class='form-control' id='post-content' rows='5' placeHolder='Share you recent experience, or talk about an upcoming interview you will be having.'></textarea>
-           </div>
-           <div class='form-group'>
 
-          <!-- END CONTENT FIELD -->
-
-          <!-- BEGIN OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
-
-           <fieldset class='form-group'>
-             <label>If you have previously interviewed at a company, how was your overall experience?</label>
-             <div class='radio'>
-               <label>
-
-                 <input type='radio' name='optionsRadios2' id='optionsRadios2' value='true' checked>
-
-                 Positive
-               </label>
-             </div>
-             <div class='radio'>
-               <label>
-                 <input type='radio' name='optionsRadios2' id='optionsRadios2' value='false'>
-                 Negative
-               </label>
-             </div>
-           </fieldset>
-
-        <!-- END OF OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
-
-        <!-- BEGIN BONUS FIELD -->
-
-               <div class='form-group'>
-                 <label for='exampleTextarea'>Bonus Tips:</label>
-                 <textarea class='form-control' id='post-bonusTips' rows='3' placeHolder='Any bonus tips to prepare you and others for the next time you interview at that company?'></textarea>
-               </div>
-               <div class='form-group'>
-
-          <!-- END BONUS TIPS FIELD -->
-        <!-- BEGIN SUBMIT BUTTON -->
-
-  </form>
-</div>
-
-<div class='modal-footer'>
-  <input type='hidden' id='post-user' name='user' value='<%if(user){%><%=user._id%><%}%>'>
-  <button type="button" class="btn btn-secondary" data-dismiss='modal'>Close</button>
-  <button type='submit' class='btn btn-danger'>Submit</button>
-
-        <!-- END SUBMIT BUTTON -->
       </div>
-    </div>
+      <!-- END COMPANY NAME -->
 
+      <!-- BEGIN INERVIEWED OR ASKING FOR HELP -->
+      <div class='form-group'>
+        <fieldset class='form-group'>
 
+          <label for='optionsRadios1'>I have:</label>
 
+          <div class='form-check'>
+
+            <label><input type='radio' name='optionsRadios1' id='optionsRadios1' value=false>  an upcoming interview with this company.</label>
+
+          </div>
+
+          <div class='form-check'>
+
+            <label><input type='radio' name='optionsRadios1' id='optionsRadios2' value=true>  interviewed with this company in the past.</label>
+
+          </div>
+
+        </fieldset>
+
+      </div>
+      <!-- END INERVIEWED OR ASKING FOR HELP -->
+
+      <!-- BEGIN CONTENT FIELD -->
+      <div class='form-group'>
+
+        <label for='exampleTextarea'>Interview details:</label>
+
+        <textarea class='form-control' id='post-content' rows='5' placeHolder='Share you recent experience, or talk about an upcoming interview you will be having.'></textarea>
+
+      </div>
+
+      <!-- END CONTENT FIELD -->
+
+      <!-- BEGIN OVERALL EXPERIENCE? NEGATIVE OR POSITIVE -->
+      <div class='form-group'>
+
+        <fieldset class='form-group'>
+
+          <label>If you have previously interviewed at a company, how was your overall experience?</label>
+
+          <div class='radio'>
+
+            <label><input type='radio' name='optionsRadios2' id='optionsRadios3' value='true' checked>Positive</label>
+
+          </div>
+
+          <div class='radio'>
+
+            <label><input type='radio' name='optionsRadios2' id='optionsRadios4' value='false'>Negative</label>
+
+          </div>
+
+        </fieldset>
+
+      </div>
+      <!-- END OF OVERALL EXPERIENCE -->
+
+      <!-- BEGIN BONUS FIELD -->
+      <div class='form-group'>
+
+        <label for='exampleTextarea'>Bonus Tips:</label>
+
+        <textarea class='form-control' id='post-bonusTips' rows='3' placeHolder='Any bonus tips to prepare you and others for the next time you interview at that company?'></textarea>
+
+      </div>
+      <!-- END BONUS TIPS FIELD -->
+
+        <!-- BEGIN SUBMIT BUTTON -->
+      <div class='form-group'>
+
+        <div class='modal-footer'>
+
+          <input type='hidden' id='post-user' name='user' value='<%if(user){%><%=user._id%><%}%>'>
+          <button type="button" class="btn btn-secondary" data-dismiss='modal'>Close</button>
+          <button type='submit' class='btn btn-danger'>Submit</button>
+
+        </div>
+
+      </div>
+      <!-- END SUBMIT BUTTON -->
+
+    </form>
+
+  </div>
+</div>
 <!-- END OF NEW POST FORM -->

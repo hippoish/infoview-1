@@ -17,12 +17,12 @@ function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=showPost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
+  + ' </strong></p><p> ' + post.content + '</p><button type="button" id="' + post._id + '" onClick=showPost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
   )
 }
 
 function createReplyHTML(reply) {
-  return $('<div class="reply-user"><h6>Reply from ' + reply.postedBy.linkedin.firstName + '</h6><img src="' + reply.postedBy.linkedin.pictureUrl + '" width="10%"></div><p>' + reply.text + '</p>')
+  return $('<div class="reply-user"><h5>Reply from ' + reply.postedBy.linkedin.firstName + '</h5><img src="' + reply.postedBy.linkedin.pictureUrl + '" width="10%"></div><p>' + reply.text + '</p>')
 }
 
 function listReplies(post) {
