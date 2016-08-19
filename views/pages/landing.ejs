@@ -33,8 +33,8 @@
   					<nav id='nav'>
   						<ul>
   							<li><a href='#intro' class='active'>About Us</a></li>
-  							<li><a href='#first'>Chat</a></li>
-  							<li><a href='#second'>Dashboard</a></li>
+  							<li><a href='#first'>InfoBoard</a></li>
+  							<li><a href='#second'>Chat</a></li>
   							<li><a href='#cta'>Contact Us</a></li>
   						</ul>
   					</nav>
@@ -58,12 +58,80 @@
   								</div>
   							</section>
 
-  						<!-- Chat -->
+  						<!-- InfoBoard -->
   							<section id='first' class='main special'>
-  								<header class='major'>
-  									<h2>Chat with others online</h2>
+                  <header class='major'>
+  									<h2>Share your experiences</h2>
+
+                    <!-- Modal for show post -->
+                    <span id='show-post-span'><% var post = 1 %></span>
+                    <div class='modal fade' id='showModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog' role='document'>
+                        <div class='modal-content'>
+                          <div class='modal-header'>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                            </button>
+                            <% include ../partials/show_post %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- button for new post modal-->
+                    <button type='button' style="margin-bottom:2%" class='btn link' data-toggle='modal' data-target='#myModal'>
+                      Share your experience
+                    </button>
+
+                    <!-- Formfield Modal -->
+                    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+                      <div class='modal-dialog' role='document'>
+                        <div class='modal-content'>
+                          <div class='modal-header'>
+
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                              <span aria-hidden='true'>&times;</span>
+                            </button>
+
+                            <% include ../partials/form %>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Two Columns -->
+                    <div class='row'>
+                          <article class='postList posts-column'>
+                            <b>
+                              <h3 class='custom-font'>Sensei</h3>
+                              <h4>Share your past interview experience</h4>
+                            </b>
+                            <hr style='margin: 5%;'>
+                            <ul class='posts-list list-group pre-scrollable' id='sensei-posts'>
+                              <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
+                            </ul>
+                          </article>
+                          <article class='postList posts-column'>
+                            <b>
+                              <h3 class='custom-font'>Grasshopper</h3>
+                              <h4>Ask for interview advice</h4>
+                            </b>
+                            <hr style='margin: 5%;'>
+                            <ul class='posts-list list-group pre-scrollable' id='grasshopper-posts'>
+                              <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
+                            </ul>
+                          </article>
+                    </div>
   								</header>
-  									<!-- INSERT CHAT FEATURE HERE -->
+  							</section>
+
+  						<!-- Chat -->
+  							<section id='second' class='main special'>
+                  <header class='major'>
+                    <h2>Chat with others online</h2>
+                  </header>
+                    <!-- INSERT CHAT FEATURE HERE -->
                     <style>
                     * {
                       margin: 3%;
@@ -104,70 +172,6 @@
                         </form>
                     </div>
                   </center>
-  							</section>
-
-  						<!-- Dashboard -->
-  							<section id='second' class='main special'>
-  								<header class='major'>
-  									<h2>Share your experiences</h2>
-
-                    <!-- Modal for show post -->
-                    <span id='show-post-span'><% var post = 1 %></span>
-                    <div class='modal fade' id='showModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-                    <div class='modal-dialog' role='document'>
-                        <div class='modal-content'>
-                          <div class='modal-header'>
-                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                              <span aria-hidden='true'>&times;</span>
-                            </button>
-                            <% include ../partials/show_post %>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- button for new post modal-->
-                    <button type='button' class='btn link' data-toggle='modal' data-target='#myModal'>
-                      [Share your experience]
-                    </button>
-
-                    <!-- Formfield Modal -->
-                    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-                      <div class='modal-dialog' role='document'>
-                        <div class='modal-content'>
-                          <div class='modal-header'>
-
-                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                              <span aria-hidden='true'>&times;</span>
-                            </button>
-
-                            <% include ../partials/form %>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Two Columns -->
-                    <div class='row'>
-                          <article class='postList posts-column pre-scrollable'>
-                            <h4 class='custom-font'>Sensei</h4>
-                            <p>Share your experience with grasshoppers facing upcoming interviews.</p>
-                            <hr style='margin: 5%;'>
-                            <ul class='posts-list list-group' id='sensei-posts'>
-                              <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
-                            </ul>
-                          </article>
-                          <article class='postList posts-column pre-scrollable'>
-                            <h4 class='custom-font'>Grasshoppers</h4>
-                            <p>Post if you are looking for interview advice from wise Senseis.</p>
-                            <hr style='margin: 5%;'>
-                            <ul class='posts-list group-list' id='grasshopper-posts'>
-                              <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
-                            </ul>
-                          </article>
-                    </div>
-  								</header>
   							</section>
 
   						<!-- Contact Us -->

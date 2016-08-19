@@ -1637,8 +1637,8 @@ input[type=checkbox] {
 	}
 
 	body {
-		background-color: gold;
-		background-image: url("images/overlay.png"), linear-gradient(#000000, gold);
+		background-color: #5a0360;
+		background-image: url("images/overlay.png"), linear-gradient(#213b89, #5a0360);
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
