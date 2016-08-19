@@ -3,28 +3,13 @@ var express  = require('express');
 var router   = new express.Router();
 
 // require controllers
-var pagesController = require('../controllers/pages_controller')
-var postsController = require('../controllers/posts_controller')
-var usersController = require('../controllers/users_controller')
+var pagesController = require('../controllers/pages_controller');
+var postsController = require('../controllers/posts_controller');
+var usersController = require('../controllers/users_controller');
 
-// route path:
+// root path:
 router.route('/')
-  .get(pagesController.landing)
-// about path:
-router.route('/about')
-  .get(pagesController.about);
-
-// dashboard path:
-router.route('/dashboard')
-  .get(pagesController.dashboard);
-
-//chat path;
- router.route('/chat')
-   .get(pagesController.chat);
-
-// app.get ('/chat', function(req, res){
-//   res.sendFile(__dirname + '/index.ejs');
-// });
+  .get(pagesController.landing);
 
 // API for posts
 router.route('/api/posts')
@@ -45,20 +30,19 @@ router.route('/api/users/:id')
 ///////////// LINKEDIN OAUTH ///////////////
 ////////////////////////////////////////////
 router.get('/', function(req, res, next){
-  console.log('get request');
   res.render('/', {user: req.user});
 });
 
-router.get('/auth/linkedin', passport.authenticate(
- ('linkedin')/*,*/
- // { scope: ['profile', 'email'] }
-));
+// route for login with linkedin
+router.get('/auth/linkedin', passport.authenticate(('linkedin')));
 
+// route for after login
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect : '/',
   failureRedirect : '/login'
 }));
 
+// route for logout
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
