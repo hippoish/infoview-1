@@ -8,8 +8,8 @@ $(document).ready(function() {
     socket.emit('new person', $('#name').val());
   })
   $('form').submit(function(){
-		socket.emit('chat message', $('#name').val() + ': ' + $('#m').val())
-		$('#m').val('')
+		socket.emit('chat message', $('#name').val() + ': ' + $('#msg').val())
+		$('#msg').val('')
 		return false
 	})
 
