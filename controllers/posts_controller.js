@@ -62,8 +62,13 @@ function update(req, res, next) {
       post.save(function(err, updatedPost) {
         if (err) next(err);
 
-        console.log('Yabba dabba doozy, baba - we changed it up!');
-        res.json(updatedPost);
+        Post.findById(updatedPost._id).populate('replies.postedBy').exec(function(err, post) {
+          if (err || !post) {
+            next (err)
+          } else {
+            res.json(post)
+          }
+        })
       })
     }
   })
