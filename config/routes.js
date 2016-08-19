@@ -5,6 +5,7 @@ var router   = new express.Router();
 // require controllers
 var pagesController = require('../controllers/pages_controller')
 var postsController = require('../controllers/posts_controller')
+var usersController = require('../controllers/users_controller')
 
 // route path:
 router.route('/')
@@ -16,8 +17,6 @@ router.route('/about')
 // dashboard path:
 router.route('/dashboard')
   .get(pagesController.dashboard);
-
-
 
 //chat path;
  router.route('/chat')
@@ -32,10 +31,15 @@ router.route('/api/posts')
   .get(postsController.index)
   .post(postsController.create);
 
-// deleting posts from API
+// API for a single post
 router.route('/api/posts/:id')
   .get(postsController.show)
+  .patch(postsController.update)
   .delete(postsController.destroy);
+
+// getting a user from the API
+router.route('/api/users/:id')
+  .get(usersController.show);
 
 ////////////////////////////////////////////
 ///////////// LINKEDIN OAUTH ///////////////

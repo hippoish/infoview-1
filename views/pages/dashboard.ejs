@@ -1,61 +1,80 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <% include ../partials/head %>
   </head>
 
   <body>
+    <!-- include the nav bar -->
     <% include ../partials/nav %>
 
-    <span id='show-post-span'><% var post = 1 %></span>
-    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <% include ../partials/show_post %>
-          </div>
+    <!-- Modal for show post details -->
+    <div class='modal fade' id='showModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+
+    <div class='modal-dialog' role='document'>
+
+        <div class='modal-content'>
+          <!-- include the show post content -->
+          <% include ../partials/show_post %>
         </div>
+
       </div>
+
     </div>
 
-
-    <!-- button for new post modal-->
-    <button type="button" class="btn link" data-toggle="modal" data-target="#myModal">
+    <!-- button for new post -->
+    <button type='button' class='btn link' data-toggle='modal' data-target='#myModal'>
       [Share your experience]
     </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
+    <!-- Modal for new post form -->
+    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
 
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+      <div class='modal-dialog' role='document'>
 
+        <div class='modal-content'>
+
+          <div class='modal-header'>
+
+            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+
+            <!-- include the new post form -->
             <% include ../partials/form %>
 
           </div>
+
         </div>
+
       </div>
+
     </div>
 
 
-    <div class="row">
-      <%# <div class="container posts-content">
-        <div class="one-half column col-md-6">%>
-          <article class="postList posts-column pre-scrollable">
+    <div class='row'>
+
+      <div class='container posts-content'>
+
+        <div class='one-half column col-md-6'>
+
+
+          <article class='postList posts-column'>
+
+
             <h4 class='custom-font'>Sensei</h4>
             <p>Share your experience with grasshoppers facing upcoming interviews.</p>
             <hr style="margin: 5%;">
             <ul class="posts-list list-group" id="sensei-posts">
               <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
+
+            <hr style='margin: 5%;'>
+
+            <ul class='posts-list list-group' id='sensei-posts'>
+              <!-- THIS IS WHERE THE POSTS RELATED TO PAST INTERVIEWS WILL APPEND -->
+
             </ul>
           </article>
+
         <%# </div>%>
         <%# <div class="one-half column  col-md-6">%>
           <article class="postList posts-column pre-scrollable">
@@ -64,12 +83,40 @@
             <hr style="margin: 5%;">
             <ul class="posts-list group-list" id="grasshopper-posts">
               <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
+
+
+        </div>
+
+        <div class='one-half column  col-md-6'>
+
+          <article class='postList posts-column'>
+
+            <h4 class='custom-font'>Grasshoppers</h4>
+
+            <p>Post if you are looking for interview advice from wise Senseis.</p>
+
+            <hr style='margin: 5%;'>
+
+            <ul class='posts-list group-list' id='grasshopper-posts'>
+              <!-- THIS IS WHERE THE POSTS RELATED TO UPCOMING INTERVIEWS WILL APPEND -->
+
             </ul>
           </article>
-        <%# </div>
-      </div>%>
+
+
+
+        </div>
+
+      </div>
+
     </div>
-    <div class="hidden-id" id="<%= user? user._id : '' %>"></div>
+
+    <!-- hidden div to make it so the back end can pull the id of the current user! Mike is awesome -->
+    <div class='hidden-id' id='<%= user? user._id : '' %>'>
+    </div>
+
     <% include ../partials/scripts %>
+
   </body>
+
 </html>
