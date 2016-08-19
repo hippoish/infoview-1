@@ -31,19 +31,45 @@ We will use the following languages and technologies:
 * Passport
 
 
----
+### Approach taken
 
+
+
+
+---
+### Heroku Link
+
+[Heroku](https://infoview.herokuapp.com/)
 ---
 
 ### ERD
 
-https://trello.com/c/ZyILyhpJ/1-erds
+[Trello](https://trello.com/c/ZyILyhpJ/1-erds)
 ---
 
 ### Wireframes
 
-https://trello.com/c/MtA8IxcX/2-wire-frames
+[Trello](https://trello.com/c/MtA8IxcX/2-wire-frames)
 
 ### Trello link/User Stories
 
-https://trello.com/b/lxEVMb41/project-3-infoview
+#### User Stories
+
+| As a .. | I can.. |
+|---------|---------|
+| User| learn about the site |
+| User| Post for advice |
+| User | Post to share experience| 
+| User | Show if experience was negative of positive |
+| User | sign up |
+| User | log in |
+| User | Reply to posts |
+| User | instant chat with others to get more info|
+| User | create/edit/delete my public profile |
+| User | create/edit/delete my posts |
+| User |  |
+| User |  |
+| User |  |
+-
+
+[Trello](https://trello.com/b/lxEVMb41/project-3-infoview)
