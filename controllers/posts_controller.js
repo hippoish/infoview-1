@@ -4,12 +4,11 @@ module.exports = {
   index:   index,
   create:  create,
   show: show,
-  // update:  update,
+  update:  update,
   destroy: destroy
 }
 
 // return all posts from the db as json
-// middleware takes in a req and a res and needs a next to tell the app when to pass along to the next middleware in the chain
 function index(req, res, next) {
   console.log('Fetchin those posts, baby!!!');
 
@@ -22,6 +21,7 @@ function index(req, res, next) {
   });
 };
 
+// creates a new post as json
 function create(req, res, next) {
   console.log('user, Bobble', req.body);
   var newPost = new Post(req.body);
@@ -34,8 +34,10 @@ function create(req, res, next) {
   });
 }
 
+// finds a single post as json
 function show(req, res, next) {
-  var post = Post.findById(req.params.id, function(err, post) {
+  var post = Post.findById(req.params.id)
+    .populate('replies.postedBy').exec(function(err, post) {
     if (err || !post) {
       next (err)
     } else {
@@ -43,33 +45,32 @@ function show(req, res, next) {
     }
   })
 }
-// function update(req, res, next) {
-//   var id = req.params.id;
-//   console.log('Show bootsy that body, bebe!!!', id, req.body);
-//
-//   Post.findById(id, function(err, post) {
-//     if (err || !post) {
-//       next(err)
-//     } else {
-//       // set the new info if it exists in the request (if there are a ton of properties look up the programmatic way to do this)
-//       // if (req.body.task) post.task = req.body.task;
-//       // if (req.body.bootsyLevel) post.bootsyLevel = req.body.bootsyLevel;
-//       // post.completed = req.body.completed;
-//
-//       // We are only allowing users to check or uncheck completed box on the post page, so for this specific case, i can ignore the request data and just flip the boolean.
-//       // for a proper update, with actual changing data, see the code commented out above
-//       post.completed = !post.completed;
-//
-//       post.save(function(err, updatedPost) {
-//         if (err) next(err);
-//
-//         console.log('Yabba dabba doozy, baba - we changed it up!');
-//         res.json(updatedPost);
-//       })
-//     }
-//   })
-// }
-//
+
+// updates a single post
+function update(req, res, next) {
+  var id = req.params.id;
+  var reply = req.body
+  console.log('Show bootsy that body, bebe!!!', id, req.body);
+
+  Post.findById(id, function(err, post) {
+    if (err || !post) {
+      next(err)
+    } else {
+      // add the form field content to the replies array field of the current post
+      post.replies.push(reply);
+      console.log(post.replies);
+      post.save(function(err, updatedPost) {
+        if (err) next(err);
+
+        console.log('Yabba dabba doozy, baba - we changed it up!');
+        res.json(updatedPost);
+      })
+    }
+  })
+}
+
+
+// destroys a post
 function destroy(req, res, next) {
   var id = req.params.id;
   console.log('Say toodaloo, post, Bootsy!!', id);
