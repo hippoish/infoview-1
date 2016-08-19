@@ -17,7 +17,7 @@ function createPostHTML(post) {
   return $('<li id="post-' + post._id +
   '" class="groupList interviewed-' + post.interviewed
   + ' list-group-item"><p>Company: <strong>' + post.company
-  + ' </strong></p><br> ' + post.content + '<br><button type="button" id="' + post._id + '" onClick=showPost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
+  + ' </strong></p><br><p> ' + post.content + '</p><br><button type="button" id="' + post._id + '" onClick=showPost(this.id) class="link show-post" data-target="#showModal" data-toggle="modal" data-id="' + post._id + '"> View for more info</button>' + addDeleteButton(post) + '</li>'
   )
 }
 
