@@ -9,189 +9,209 @@
     <div id='wrapper'>
 
       <!-- Header -->
-  					<header id='header' class='alt'>
-  						<span class='logo'><img src='images/logo.png' alt='' /></span>
-  						<p style="margin:3%;">
-                Your cheatsheet for job interviews
-              </p>
+			<header id='header' class='alt'>
+				<span class='logo'><img src='images/logo.png' alt='' /></span>
+				<p style="margin:3%;">
+          Your cheatsheet for job interviews
+        </p>
 
-              <% if (user) { %>
-                <h1>
-                  Hello, <%= user.linkedin.firstName %>!
-                </h1>
-                <h3>
-                  <a href='/logout'>Logout</a>
-                </h3>
-              <% } else { %>
-                <p>
-                  <a href='/auth/linkedin'><img class='center' alt='Linkedin' src='/images/Sign-in-Default.png' ></a>
-                </p>
-              <% } %>
+        <% if (user) { %>
+          <h1>
+            Hello, <%= user.linkedin.firstName %>!
+          </h1>
+          <h3>
+            <a href='/logout'>Logout</a>
+          </h3>
+        <% } else { %>
+          <p>
+            <a href='/auth/linkedin'><img class='center' alt='Linkedin' src='/images/Sign-in-Default.png' ></a>
+          </p>
+        <% } %>
 
-  					</header>
+			</header>
 
-  				<!-- Nav -->
-  					<nav id='nav'>
-  						<ul>
-  							<li><a href='#intro' class='active'>About Us</a></li>
-  							<li><a href='#first'>InfoBoard</a></li>
-  							<li><a href='#second'>Chat</a></li>
-  							<li><a href='#cta'>Contact Us</a></li>
-  						</ul>
-  					</nav>
+		  <!-- Nav -->
+			<nav id='nav'>
+				<ul>
+					<li><a href='#intro' class='active'>About Us</a></li>
+					<li><a href='#first'>InfoBoard</a></li>
+					<li><a href='#second'>Chat</a></li>
+					<li><a href='#cta'>Contact Us</a></li>
+				</ul>
+			</nav>
 
-  				<!-- Main -->
-  					<div id='main'>
+  		<!-- Main -->
+  		<div id='main'>
 
-  						<!-- About Us -->
-  							<section id='intro' class='main'>
-  								<div class='spotlight'>
-  									<div class='content'>
-  										<header class='major'>
-  											<h2>What is Infoview?</h2>
-  										</header>
-  										<p><b>ABOUT OUR DOJO</b><br> Interviews are stressful. But what if you had a cheat sheet of sorts, like a Sensei who could mold a young grasshopper to become a class a Interview Ninja. Enter the InfoView dojo! Ask someone at a specific company what their interview process was like, tips on what to brush up on, what to wear, or the best parts of working for that company.</p>
-  										<ul class='actions'>
-  											<!-- INSERT LOGIN FEATURE HERE -->
-  										</ul>
-  									</div>
-  									<span class='image'><img src='images/bow.png' alt='' /></span>
-  								</div>
-  							</section>
+		    <!-- About Us -->
+  			<section id='intro' class='main'>
+  				<div class='spotlight'>
+  					<div class='content'>
+  						<header class='major'>
+  							<h2>What is Infoview?</h2>
+  						</header>
+              <h4><b>ABOUT OUR DOJO</b></h4>
+              <p>Interviews are stressful. But what if you had a cheat sheet of sorts, like a Sensei who could mold a young grasshopper to become a class a Interview Ninja. Enter the InfoView dojo! Ask someone at a specific company what their interview process was like, tips on what to brush up on, what to wear, or the best parts of working for that company.</p>
 
-  						<!-- InfoBoard -->
-  							<section id='first' class='main special'>
-                  <header class='major'>
-  									<h2>Share your experiences</h2>
-
-                    <!-- Modal for show post -->
-                    <div class='modal fade' id='showModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-                    <div class='modal-dialog' role='document'>
-
-                            <% include ../partials/show_post %>
-                          </div>
-                        </div>
-
-                    <!-- button for new post -->
-                    <button type='button' style="margin-bottom:2%" class='btn link' data-toggle='modal' data-target='#myModal'>Share your experience</button>
-
-                    <!-- New Post Modal -->
-                    <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
-                      <div class='modal-dialog' role='document'>
-
-                            <% include ../partials/form %>
-
-                      </div>
-                    </div>
-
-                    <!-- Two Columns -->
-                    <div class='row'>
-                          <article class='postList posts-column'>
-                            <b>
-                              <h2 class='custom-font'>Sensei</h2>
-                              <h4>Share your past interview experience</h4>
-                            </b>
-                            <hr style='margin: 5%;'>
-                            <ul class='posts-list list-group pre-scrollable' id='sensei-posts'>
-                              <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
-                            </ul>
-                          </article>
-                          <article class='postList posts-column'>
-                            <b>
-                              <h2 class='custom-font'>Grasshopper</h2>
-                              <h4>Ask for interview advice</h4>
-                            </b>
-                            <hr style='margin: 5%;'>
-                            <ul class='posts-list list-group pre-scrollable' id='grasshopper-posts'>
-                              <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
-                            </ul>
-                          </article>
-                    </div>
-  								</header>
-  							</section>
-
-  						<!-- Chat -->
-  							<section id='second' class='main special'>
-                  <header class='major'>
-                    <h2>Chat with others online</h2>
-                  </header>
-                    <!-- INSERT CHAT FEATURE HERE -->
-                    <style>
-                    * {
-                      margin: 3%;
-                    }
-                    form input {
-                      background: #fcfcfc;
-                      padding: 10px;
-                      margin-top: 2%;
-                      width: 90%;
-                      margin-right: .5%;
-                      box-sizing: border-box;
-                    }
-                    form button {
-                      /*width: 50%;*/
-                      border: none;
-                      margin: 10px;
-                    }
-                    #messages {
-                      list-style-type: none;
-                      margin: 0;
-                      padding: 0;
-                    }
-                    #messages li {
-                      padding: 5px 10px;
-                    }
-                    #chatbox {
-                      width: 50%;
-                      padding-right: 2%;
-                      text-align: center;
-                    }
-                    #submit-name {
-                      margin-bottom: 2%;
-                    }
-                    #name {
-                      width: 60%;
-                    }
-                    </style>
-                    <div id='chatbox' class='pre-scrollable' style="display:inline-block;float:left;">
-
-                        <input id='name' placeholder='Your name'>
-                        <button id='submit-name'>Enter Name</button>
-
-                        <form action=''>
-                          <input autocomplete='off' id='msg' placeholder='Chat with others online'/><button>Send</button>
-                          <ul id='messages'></ul>
-                        </form>
-                      </div>
-                      <div class='pre-scrollable'>
-                        <ul id='connected-users' style='display:inline-block;'></ul>
-                      </div>
-                    <div style="clear:both;"></div>
-  							</section>
-
-  						<!-- Contact Us -->
-  							<section id='cta' class='main special'>
-  								<header class='major'>
-  									<h2>Contact Us</h2>
-  										<p><a href='https://github.com/hippoish' class='icon fa-github alt'><span class='label'>Taylor's GitHub</span> Taylor Britton</a><br><br>
-  										<a href='https://github.com/diisles' class='icon fa-github alt'><span class='label'>David's GitHub</span> David Isles</a><br><br>
-  										<a href='https://github.com/desireedesario' class='icon fa-github alt'><span class='label'>Desi's GitHub</span> Desiree Desario</a></p>
-  								</section>
-  								</header>
-  							</section>
-
+              <ul class='actions'>
+  						<!-- INSERT LOGIN FEATURE HERE -->
+  					  </ul>
   					</div>
 
-  				<!-- Footer -->
-  					<footer id='footer'>
-  						<p class='copyright'>&copy; InfoView</p>
-  					</footer>
+  					<span class='image'><img src='images/bow.png' alt='' /></span>
+  				</div>
+  			</section>
 
-  			</div>
+  			<!-- InfoBoard -->
+  			<section id='first' class='main special'>
+          <header class='major'>
+  					<h2>Share your experiences</h2>
+          </header>
 
+          <!-- Modal for show post -->
+          <div class='modal fade' id='showModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+            <div class='modal-dialog' role='document'>
+              <% include ../partials/show_post %>
+            </div>
+          </div>
 
+          <!-- button for new post -->
+          <button type='button' style="margin-bottom:2%" class='btn link' data-toggle='modal' data-target='#myModal'>Share your experience</button>
+
+          <!-- New Post Modal -->
+          <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+            <div class='modal-dialog' role='document'>
+
+              <% include ../partials/form %>
+
+            </div>
+          </div>
+
+          <!-- Two Columns -->
+          <div class='row infoboard'>
+            <article class='postList posts-column'>
+              <b>
+                <h2 class='custom-font'>Sensei</h2>
+                <h4>Share your past interview experience</h4>
+              </b>
+              <hr style='margin: 5%;'>
+
+              <ul class='posts-list list-group pre-scrollable' id='sensei-posts'>
+                <!-- THIS IS WHERE THE POST OF EXPERIENCED INTERVIEWERS LIST WILL APPEND -->
+              </ul>
+
+            </article>
+
+            <article class='postList posts-column'>
+              <b>
+                <h2 class='custom-font'>Grasshopper</h2>
+                <h4>Ask for interview advice</h4>
+              </b>
+              <hr style='margin: 5%;'>
+              <ul class='posts-list list-group pre-scrollable' id='grasshopper-posts'>
+                <!-- THIS IS WHERE THE POST OF UPCOMING INTERVIEW HELP LIST WILL APPEND -->
+              </ul>
+            </article>
+
+          </div>
+
+    		</section>
+
+  			<!-- Chat -->
+  			<section id='second' class='main special'>
+          <header class='major'>
+            <h2>Chat with others online</h2>
+          </header>
+
+          <!-- INSERT CHAT FEATURE HERE -->
+          <style>
+            * {
+              margin: 3%;
+            }
+            form input {
+              background: #fcfcfc;
+              padding: 10px;
+              margin-top: 2%;
+              width: 90%;
+              margin-right: .5%;
+              box-sizing: border-box;
+            }
+            form button {
+              /*width: 50%;*/
+              border: none;
+              margin: 10px;
+            }
+            #messages {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+            }
+            #messages li {
+              padding: 5px 10px;
+            }
+            #chatbox {
+              width: 50%;
+              padding-right: 2%;
+              text-align: center;
+            }
+            #submit-name {
+              margin-bottom: 2%;
+            }
+            #name {
+              width: 60%;
+            }
+          </style>
+
+          <div id='chatbox' class='pre-scrollable' style="display:inline-block;float:left;">
+
+            <input id='name' placeholder='Your name'>
+
+            <button id='submit-name'>Enter Name</button>
+
+            <form action=''>
+              <input autocomplete='off' id='msg' placeholder='Chat with others online'/><button>Send</button>
+              <ul id='messages'></ul>
+            </form>
+
+          </div>
+
+          <div class='pre-scrollable'>
+            <ul id='connected-users' style='display:inline-block;'></ul>
+          </div>
+
+          <div style="clear:both;"></div>
+    		</section>
+
+    		<!-- Contact Us -->
+    		<section id='cta' class='main special'>
+
+          <header class='major'>
+    				<h2>Contact Us</h2>
+          </header>
+
+    			<p>
+            <a href='https://github.com/hippoish' class='icon fa-github alt'><span class='label'>Taylor's GitHub</span> Taylor Britton</a>
+            <br>
+            <br>
+    			  <a href='https://github.com/diisles' class='icon fa-github alt'><span class='label'>David's GitHub</span> David Isles</a>
+            <br>
+            <br>
+    			  <a href='https://github.com/desireedesario' class='icon fa-github alt'><span class='label'>Desi's GitHub</span> Desiree Desario</a>
+          </p>
+
+    		</section>
+
+  		</div>
+
+  		<!-- Footer -->
+			<footer id='footer'>
+				<p class='copyright'>&copy; InfoView</p>
+			</footer>
+
+  	</div>
 
     <% include ../partials/footer %>
     <% include ../partials/scripts %>
+
   </body>
 </html>

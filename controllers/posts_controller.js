@@ -1,11 +1,11 @@
 var Post = require('../models/post');
 
 module.exports = {
-  index:   index,
-  create:  create,
-  show: show,
-  update:  update,
-  destroy: destroy
+  index   : index,
+  create  : create,
+  show    : show,
+  update  : update,
+  destroy : destroy
 }
 
 // return all posts from the db as json
@@ -46,7 +46,7 @@ function show(req, res, next) {
   })
 }
 
-// updates a single post
+// updates a single post, ie add a reply associated with it
 function update(req, res, next) {
   var id = req.params.id;
   var reply = req.body

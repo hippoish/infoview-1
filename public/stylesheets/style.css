@@ -74,6 +74,11 @@ input[type=checkbox] {
 
 /* Grid */
 
+  .infoboard {
+    padding: 5%;
+    margin: auto;
+  }
+
 	.row {
 		border-bottom: solid 1px transparent;
 		-moz-box-sizing: border-box;

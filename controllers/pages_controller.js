@@ -25,6 +25,7 @@ function dashboard(req, res, next) {
   res.render('pages/dashboard', {current_user: global.user});
 };
 
+// action to render the the chat function
 function chat(req, res, next) {
   res.render('chat', {current_user: global.user});
 };
